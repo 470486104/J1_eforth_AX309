@@ -1,0 +1,79 @@
+#-----------------------------------------------------------
+# PlanAhead v14.7 (64-bit)
+# Build 321239 by xbuild on Fri Sep 27 19:29:51 MDT 2013
+# Start of session at: Fri Oct 09 15:08:08 2020
+# Process ID: 19424
+# Log file: D:/FORTH/FPGA_FORTH/2020/j1 eForth/j1eforth_papilio_pro/fpga/planAhead_run_1/planAhead.log
+# Journal file: D:/FORTH/FPGA_FORTH/2020/j1 eForth/j1eforth_papilio_pro/fpga/planAhead_run_1/planAhead.jou
+#-----------------------------------------------------------
+INFO: [Common 17-78] Attempting to get a license: PlanAhead
+INFO: [Common 17-290] Got license for PlanAhead
+INFO: [Common 17-86] Your PlanAhead license expires in -1378 day(s)
+INFO: [Device 21-36] Loading parts and site information from C:/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/arch.xml
+Parsing RTL primitives file [C:/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+Finished parsing RTL primitives file [C:/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+start_gui
+source {D:/FORTH/FPGA_FORTH/2020/j1 eForth/j1eforth_papilio_pro/fpga/pa.fromHdl.tcl}
+# create_project -name papilio-pro-j1 -dir "D:/FORTH/FPGA_FORTH/2020/j1 eForth/j1eforth_papilio_pro/fpga/planAhead_run_1" -part xc6slx9tqg144-3
+# set_param project.pinAheadLayout yes
+# set srcset [get_property srcset [current_run -impl]]
+# set_property target_constrs_file "D:/FORTH/FPGA_FORTH/2020/j1 eForth/j1eforth_papilio_pro/fpga/src/papilio-pro.ucf" [current_fileset -constrset]
+Adding file 'D:/FORTH/FPGA_FORTH/2020/j1 eForth/j1eforth_papilio_pro/fpga/src/papilio-pro.ucf' to fileset 'constrs_1'
+# set hdlfile [add_files [list {src/utils.vhd}]]
+# set_property file_type VHDL $hdlfile
+# set_property library work $hdlfile
+# set hdlfile [add_files [list {src/Txunit.vhd}]]
+# set_property file_type VHDL $hdlfile
+# set_property library work $hdlfile
+# set hdlfile [add_files [list {src/Rxunit.vhd}]]
+# set_property file_type VHDL $hdlfile
+# set_property library work $hdlfile
+# set hdlfile [add_files [list {src/miniuart.vhd}]]
+# set_property file_type VHDL $hdlfile
+# set_property library work $hdlfile
+# set hdlfile [add_files [list {src/j1.v}]]
+# set_property file_type Verilog $hdlfile
+# set_property library work $hdlfile
+# set hdlfile [add_files [list {src/clock.vhd}]]
+# set_property file_type VHDL $hdlfile
+# set_property library work $hdlfile
+# set hdlfile [add_files [list {src/papilio-pro-j1.vhd}]]
+# set_property file_type VHDL $hdlfile
+# set_property library work $hdlfile
+# set_property top papilio_pro_j1 $srcset
+# add_files [list {D:/FORTH/FPGA_FORTH/2020/j1 eForth/j1eforth_papilio_pro/fpga/src/papilio-pro.ucf}] -fileset [get_property constrset [current_run]]
+# open_rtl_design -part xc6slx9tqg144-3
+Using Verific elaboration
+Parsing VHDL file "C:/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/rtl/lib/synplify/synattr.vhd" into library synplify
+Parsing VHDL file "C:/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/rtl/lib/synplify/synattr.vhd" into library synplify
+Parsing VHDL file "D:/FORTH/FPGA_FORTH/2020/j1 eForth/j1eforth_papilio_pro/fpga/src/utils.vhd" into library work
+Parsing VHDL file "D:/FORTH/FPGA_FORTH/2020/j1 eForth/j1eforth_papilio_pro/fpga/src/Txunit.vhd" into library work
+Parsing VHDL file "D:/FORTH/FPGA_FORTH/2020/j1 eForth/j1eforth_papilio_pro/fpga/src/Rxunit.vhd" into library work
+Parsing VHDL file "D:/FORTH/FPGA_FORTH/2020/j1 eForth/j1eforth_papilio_pro/fpga/src/miniuart.vhd" into library work
+Parsing VHDL file "D:/FORTH/FPGA_FORTH/2020/j1 eForth/j1eforth_papilio_pro/fpga/src/clock.vhd" into library work
+Parsing VHDL file "D:/FORTH/FPGA_FORTH/2020/j1 eForth/j1eforth_papilio_pro/fpga/src/papilio-pro-j1.vhd" into library work
+Loading clock regions from C:/Xilinx/14.7/ISE_DS/PlanAhead/data\parts/xilinx/spartan6/spartan6lx/xc6slx9/ClockRegion.xml
+Loading clock buffers from C:/Xilinx/14.7/ISE_DS/PlanAhead/data\parts/xilinx/spartan6/spartan6lx/xc6slx9/ClockBuffers.xml
+Loading package pin functions from C:/Xilinx/14.7/ISE_DS/PlanAhead/data\parts/xilinx/spartan6/PinFunctions.xml...
+Loading package from C:/Xilinx/14.7/ISE_DS/PlanAhead/data\parts/xilinx/spartan6/spartan6lx/xc6slx9/tqg144/Package.xml
+Loading io standards from C:/Xilinx/14.7/ISE_DS/PlanAhead/data\./parts/xilinx/spartan6/IOStandards.xml
+Loading device configuration modes from C:/Xilinx/14.7/ISE_DS/PlanAhead/data\parts/xilinx/spartan6/ConfigModes.xml
+Loading list of drcs for the architecture : C:/Xilinx/14.7/ISE_DS/PlanAhead/data\./parts/xilinx/spartan6/drc.xml
+Parsing UCF File [D:/FORTH/FPGA_FORTH/2020/j1 eForth/j1eforth_papilio_pro/fpga/src/papilio-pro.ucf]
+Finished Parsing UCF File [D:/FORTH/FPGA_FORTH/2020/j1 eForth/j1eforth_papilio_pro/fpga/src/papilio-pro.ucf]
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Phase 0 | Netlist Checksum: 0c8a5b06
+open_rtl_design: Time (s): elapsed = 00:00:09 . Memory (MB): peak = 621.188 ; gain = 167.563
+update_compile_order -fileset sim_1
+exit
+ERROR: [PlanAhead 12-106] *** Exception: ui.h.b: Found deleted key in HTclEventBroker. Verify if the classes listed here call cleanup()
+HTclEvent: SIGNAL_BUS_MODIFY   Classes: ui.views.aR 
+HTclEvent: DEBUG_CORE_CONFIG_CHANGE   Classes: ui.views.aR 
+HTclEvent: SIGNAL_MODIFY   Classes: ui.views.aR 
+HTclEvent: DEBUG_PORT_CONFIG_CHANGE   Classes: ui.views.aR 
+ (See D:/FORTH/FPGA_FORTH/2020/j1 eForth/j1eforth_papilio_pro/fpga\planAhead_pid19424.debug)
+ERROR: [Common 17-39] 'stop_gui' failed due to earlier errors.
+INFO: [Common 17-206] Exiting PlanAhead at Fri Oct 09 22:31:56 2020...
+INFO: [Common 17-83] Releasing license: PlanAhead

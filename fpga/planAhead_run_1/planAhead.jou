@@ -1,0 +1,11 @@
+#-----------------------------------------------------------
+# PlanAhead v14.7 (64-bit)
+# Build 321239 by xbuild on Fri Sep 27 19:29:51 MDT 2013
+# Start of session at: Fri Oct 09 15:08:08 2020
+# Process ID: 19424
+# Log file: D:/FORTH/FPGA_FORTH/2020/j1 eForth/j1eforth_papilio_pro/fpga/planAhead_run_1/planAhead.log
+# Journal file: D:/FORTH/FPGA_FORTH/2020/j1 eForth/j1eforth_papilio_pro/fpga/planAhead_run_1/planAhead.jou
+#-----------------------------------------------------------
+start_gui
+source {D:/FORTH/FPGA_FORTH/2020/j1 eForth/j1eforth_papilio_pro/fpga/pa.fromHdl.tcl}
+update_compile_order -fileset sim_1

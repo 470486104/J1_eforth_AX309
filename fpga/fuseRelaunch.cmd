@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -lib "secureip" -o "D:/Users/Worship/Desktop/study_material/ForthCPU_Code/AX309_j1eforth/fpga/j1_isim_beh.exe" -prj "D:/Users/Worship/Desktop/study_material/ForthCPU_Code/AX309_j1eforth/fpga/j1_beh.prj" "work.j1" "work.glbl" 

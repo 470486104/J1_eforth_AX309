@@ -1,0 +1,10 @@
+//! **************************************************************************
+// Written by: Map P.20131013 on Mon Oct 12 13:07:36 2020
+//! **************************************************************************
+
+SCHEMATIC START;
+COMP "rx" LOCATE = SITE "C11" LEVEL 1;
+COMP "tx" LOCATE = SITE "D12" LEVEL 1;
+COMP "clk_in" LOCATE = SITE "T8" LEVEL 1;
+SCHEMATIC END;
+

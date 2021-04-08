@@ -1,0 +1,7 @@
+vhdl work "src/utils.vhd"
+vhdl work "src/Txunit.vhd"
+vhdl work "src/Rxunit.vhd"
+vhdl work "src/miniuart.vhd"
+verilog work "src/j1.v"
+vhdl work "src/clock.vhd"
+vhdl work "src/papilio-pro-j1.vhd"

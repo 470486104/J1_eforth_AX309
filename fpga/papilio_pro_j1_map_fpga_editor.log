@@ -1,0 +1,42 @@
+#:C9     
+#Xilinx FPGA Editor Command Log File
+#Editor Version:
+#:V   NT M2.1 P.20131013
+#Current Working Directory:
+#:D   D:\FORTH\FPGA_FORTH\2020\j1 eForth\j1eforth_papilio_pro\fpga
+#Date/Time:
+#:T   Fri Oct 09 15:36:51 2020
+#------------------------------
+	#Reading papilio_pro_j1_map.ncd...
+	#Loading device for application Rf_Device from file '6slx9.nph' in environment C:\Xilinx\14.7\ISE_DS\ISE\.
+	#   "papilio_pro_j1" is an NCD, version 3.2, device xc6slx9, package tqg144, speed -3
+	#Design creation date: 2020.10.09.05.56.27
+	#Building chip graphics...
+	#Loading speed info...
+	#1
+setattr main edit-mode no-logic-changes
+	#2
+select -k comp 'clock_inst/CLK2X_BUFG_INST'
+	#3
+unselect comp 'clock_inst/CLK2X_BUFG_INST'
+	#4
+select -k comp 'clock_inst/CLKFX180_BUFG_INST'
+	#5
+unselect -all
+	#6
+select site 'MCB_X0Y1'
+	#site "MCB_X0Y1",  type = MCB  (RPM grid X1Y186)
+	#7
+unselect -all
+	#8
+select site 'MCB_X0Y1'
+	#site "MCB_X0Y1",  type = MCB  (RPM grid X1Y186)
+	#9
+post block
+	#10
+unselect -all
+	#11
+select site 'RAMB16_X0Y22'
+	#site "RAMB16_X0Y22",  type = RAMB16BWER  (RPM grid X13Y176)
+	#12
+post block

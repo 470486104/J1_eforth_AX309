@@ -1,0 +1,797 @@
+Release 14.7 - xst P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.16 secs
+ 
+--> Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.16 secs
+ 
+--> Reading design: papilio_pro_j1.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Parsing
+  3) HDL Elaboration
+  4) HDL Synthesis
+       4.1) HDL Synthesis Report
+  5) Advanced HDL Synthesis
+       5.1) Advanced HDL Synthesis Report
+  6) Low Level Synthesis
+  7) Partition Report
+  8) Design Summary
+       8.1) Primitive and Black Box Usage
+       8.2) Device utilization summary
+       8.3) Partition Resource Summary
+       8.4) Timing Report
+            8.4.1) Clock Information
+            8.4.2) Asynchronous Control Signals Information
+            8.4.3) Timing Summary
+            8.4.4) Timing Details
+            8.4.5) Cross Clock Domains Report
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "papilio_pro_j1.prj"
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "papilio_pro_j1"
+Output Format                      : NGC
+Target Device                      : xc6slx9-2-ftg256
+
+---- Source Options
+Top Module Name                    : papilio_pro_j1
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Shift Register Extraction          : YES
+ROM Style                          : Auto
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Shift Register Minimum Size        : 2
+Use DSP Block                      : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+LUT Combining                      : Auto
+Reduce Control Sets                : Auto
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 16
+Register Duplication               : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Auto
+Use Synchronous Set                : Auto
+Use Synchronous Reset              : Auto
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Power Reduction                    : NO
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+DSP48 Utilization Ratio            : 100
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Parsing                                  *
+=========================================================================
+Analyzing Verilog file "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\j1.v" into library work
+Parsing module <j1>.
+Parsing VHDL file "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\utils.vhd" into library work
+Parsing entity <synchroniser>.
+Parsing architecture <Behaviour> of entity <synchroniser>.
+Parsing entity <Counter>.
+Parsing architecture <Behaviour> of entity <counter>.
+Parsing VHDL file "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\Txunit.vhd" into library work
+Parsing entity <TxUnit>.
+Parsing architecture <Behaviour> of entity <txunit>.
+Parsing VHDL file "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\Rxunit.vhd" into library work
+Parsing entity <RxUnit>.
+Parsing architecture <Behaviour> of entity <rxunit>.
+Parsing VHDL file "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\miniuart.vhd" into library work
+Parsing entity <MINIUART2>.
+Parsing architecture <Behaviour> of entity <miniuart2>.
+Parsing VHDL file "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\clock.vhd" into library work
+Parsing entity <clock>.
+Parsing architecture <BEHAVIORAL> of entity <clock>.
+Parsing VHDL file "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\papilio-pro-j1.vhd" into library work
+Parsing entity <papilio_pro_j1>.
+Parsing architecture <Behavioral> of entity <papilio_pro_j1>.
+
+=========================================================================
+*                            HDL Elaboration                            *
+=========================================================================
+
+Elaborating entity <papilio_pro_j1> (architecture <Behavioral>) from library <work>.
+
+Elaborating entity <clock> (architecture <BEHAVIORAL>) from library <work>.
+Going to verilog side to elaborate module j1
+
+Elaborating module <j1>.
+Reading initialization file \"../j1.hex\".
+WARNING:HDLCompiler:1670 - "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\j1.v" Line 85: Signal <ram> in initial block is partially initialized.
+WARNING:HDLCompiler:413 - "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\j1.v" Line 114: Result of 32-bit expression is truncated to fit in 16-bit target.
+WARNING:HDLCompiler:413 - "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\j1.v" Line 141: Result of 6-bit expression is truncated to fit in 5-bit target.
+WARNING:HDLCompiler:413 - "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\j1.v" Line 153: Result of 32-bit expression is truncated to fit in 5-bit target.
+WARNING:HDLCompiler:413 - "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\j1.v" Line 158: Result of 6-bit expression is truncated to fit in 5-bit target.
+WARNING:HDLCompiler:413 - "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\j1.v" Line 179: Result of 15-bit expression is truncated to fit in 13-bit target.
+WARNING:HDLCompiler:413 - "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\j1.v" Line 181: Result of 16-bit expression is truncated to fit in 13-bit target.
+Back to vhdl to continue elaboration
+
+Elaborating entity <MINIUART2> (architecture <Behaviour>) with generics from library <work>.
+WARNING:HDLCompiler:1127 - "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\miniuart.vhd" Line 101: Assignment to sig0 ignored, since the identifier is never used
+
+Elaborating entity <Counter> (architecture <Behaviour>) with generics from library <work>.
+
+Elaborating entity <Counter> (architecture <Behaviour>) with generics from library <work>.
+
+Elaborating entity <TxUnit> (architecture <Behaviour>) from library <work>.
+
+Elaborating entity <synchroniser> (architecture <Behaviour>) from library <work>.
+
+Elaborating entity <RxUnit> (architecture <Behaviour>) from library <work>.
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <papilio_pro_j1>.
+    Related source file is "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\papilio-pro-j1.vhd".
+    Found 4-bit register for signal <rst_counter>.
+    Found 4-bit subtractor for signal <GND_4_o_GND_4_o_sub_2_OUT<3:0>> created at line 96.
+    Found 4-bit comparator greater for signal <sys_rst> created at line 99
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred   4 D-type flip-flop(s).
+	inferred   1 Comparator(s).
+	inferred   1 Multiplexer(s).
+Unit <papilio_pro_j1> synthesized.
+
+Synthesizing Unit <clock>.
+    Related source file is "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\clock.vhd".
+    Summary:
+	no macro.
+Unit <clock> synthesized.
+
+Synthesizing Unit <j1>.
+    Related source file is "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\j1.v".
+    Found 32x16-bit dual-port RAM <Mram_dstack> for signal <dstack>.
+    Found 32x16-bit dual-port RAM <Mram_rstack> for signal <rstack>.
+    Found 16384x16-bit dual-port RAM <Mram_ram> for signal <ram>.
+    Found 16-bit register for signal <mem_din>.
+    Found 13-bit register for signal <pc>.
+    Found 5-bit register for signal <dsp>.
+    Found 16-bit register for signal <st0>.
+    Found 5-bit register for signal <rsp>.
+    Found 16-bit register for signal <insn>.
+    Found 14-bit adder for signal <n0148[13:0]> created at line 53.
+    Found 16-bit adder for signal <st0[15]_st1[15]_add_15_OUT> created at line 106.
+    Found 5-bit adder for signal <dsp[4]_GND_13_o_add_36_OUT> created at line 141.
+    Found 5-bit adder for signal <dsp[4]_dd[1]_add_37_OUT> created at line 146.
+    Found 5-bit adder for signal <rsp[4]_rd[1]_add_38_OUT> created at line 147.
+    Found 5-bit adder for signal <rsp[4]_GND_13_o_add_43_OUT> created at line 158.
+    Found 16-bit subtractor for signal <GND_13_o_GND_13_o_sub_24_OUT<15:0>> created at line 114.
+    Found 5-bit subtractor for signal <GND_13_o_GND_13_o_sub_41_OUT<4:0>> created at line 153.
+    Found 16-bit shifter logical right for signal <st1[15]_st0[3]_shift_right_22_OUT> created at line 113
+    Found 16-bit shifter logical left for signal <st1[15]_st0[3]_shift_left_26_OUT> created at line 117
+    Found 16-bit 16-to-1 multiplexer for signal <st0sel[3]_st1[15]_wide_mux_28_OUT> created at line 103.
+    Found 5-bit 4-to-1 multiplexer for signal <_n0193> created at line 150.
+    Found 5-bit 3-to-1 multiplexer for signal <_n0195> created at line 150.
+    Found 16-bit 3-to-1 multiplexer for signal <_n0197> created at line 150.
+    Found 16-bit comparator equal for signal <st1[15]_st0[15]_equal_21_o> created at line 111
+    Found 16-bit comparator greater for signal <st0[15]_st1[15]_LessThan_22_o> created at line 112
+    Found 16-bit comparator greater for signal <st1[15]_st0[15]_LessThan_28_o> created at line 119
+    Summary:
+	inferred   3 RAM(s).
+	inferred   5 Adder/Subtractor(s).
+	inferred  71 D-type flip-flop(s).
+	inferred   3 Comparator(s).
+	inferred  41 Multiplexer(s).
+	inferred   2 Combinational logic shifter(s).
+Unit <j1> synthesized.
+
+Synthesizing Unit <MINIUART2>.
+    Related source file is "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\miniuart.vhd".
+        BRDIVISOR = 217
+WARNING:Xst:647 - Input <io_din<15:8>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 8-bit register for signal <TxData>.
+    Found 1-bit register for signal <ReadA>.
+    Found 1-bit register for signal <LoadA>.
+    Summary:
+	inferred  10 D-type flip-flop(s).
+	inferred   1 Multiplexer(s).
+Unit <MINIUART2> synthesized.
+
+Synthesizing Unit <Counter_1>.
+    Related source file is "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\utils.vhd".
+        Count = 217
+    Found 1-bit register for signal <O>.
+    Found 8-bit register for signal <counter.Cnt>.
+    Found 8-bit subtractor for signal <GND_15_o_GND_15_o_sub_2_OUT<7:0>> created at line 126.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred   9 D-type flip-flop(s).
+	inferred   1 Multiplexer(s).
+Unit <Counter_1> synthesized.
+
+Synthesizing Unit <Counter_2>.
+    Related source file is "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\utils.vhd".
+        Count = 4
+    Found 1-bit register for signal <O>.
+    Found 2-bit register for signal <counter.Cnt>.
+    Found 2-bit subtractor for signal <GND_17_o_GND_17_o_sub_2_OUT<1:0>> created at line 126.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred   3 D-type flip-flop(s).
+	inferred   2 Multiplexer(s).
+Unit <Counter_2> synthesized.
+
+Synthesizing Unit <TxUnit>.
+    Related source file is "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\Txunit.vhd".
+    Found 1-bit register for signal <TxD>.
+    Found 1-bit register for signal <TBufL>.
+    Found 4-bit register for signal <TxProc.BitPos>.
+    Found 8-bit register for signal <TBuff>.
+    Found 8-bit register for signal <TReg>.
+    Found 4-bit adder for signal <TxProc.BitPos[3]_GND_19_o_add_5_OUT> created at line 92.
+    Found 3-bit subtractor for signal <GND_19_o_GND_19_o_sub_4_OUT<2:0>> created at line 91.
+    Found 1-bit 8-to-1 multiplexer for signal <GND_19_o_TReg[7]_Mux_4_o> created at line 91.
+    Summary:
+	inferred   2 Adder/Subtractor(s).
+	inferred  22 D-type flip-flop(s).
+	inferred   9 Multiplexer(s).
+Unit <TxUnit> synthesized.
+
+Synthesizing Unit <synchroniser>.
+    Related source file is "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\utils.vhd".
+    Found 1-bit register for signal <C1S>.
+    Found 1-bit register for signal <C1A>.
+    Found 1-bit register for signal <R>.
+    Summary:
+	inferred   3 D-type flip-flop(s).
+Unit <synchroniser> synthesized.
+
+Synthesizing Unit <RxUnit>.
+    Related source file is "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\Rxunit.vhd".
+    Found 1-bit register for signal <RRegL>.
+    Found 4-bit register for signal <RxProc.BitPos>.
+    Found 2-bit register for signal <RxProc.SampleCnt>.
+    Found 8-bit register for signal <DataO>.
+    Found 8-bit register for signal <RReg>.
+    Found 1-bit register for signal <RxAv>.
+    Found 4-bit adder for signal <RxProc.BitPos[3]_GND_22_o_add_8_OUT> created at line 85.
+    Found 2-bit adder for signal <RxProc.BitPos[3]_GND_22_o_add_16_OUT> created at line 91.
+    Found 3-bit subtractor for signal <GND_22_o_GND_22_o_sub_5_OUT<2:0>> created at line 82.
+    Found 4-bit comparator lessequal for signal <n0006> created at line 81
+    Summary:
+	inferred   3 Adder/Subtractor(s).
+	inferred  24 D-type flip-flop(s).
+	inferred   1 Comparator(s).
+	inferred  14 Multiplexer(s).
+Unit <RxUnit> synthesized.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# RAMs                                                 : 3
+ 16384x16-bit dual-port RAM                            : 1
+ 32x16-bit dual-port RAM                               : 2
+# Adders/Subtractors                                   : 13
+ 14-bit adder                                          : 1
+ 16-bit addsub                                         : 1
+ 2-bit adder                                           : 1
+ 2-bit subtractor                                      : 1
+ 3-bit subtractor                                      : 2
+ 4-bit adder                                           : 2
+ 4-bit subtractor                                      : 1
+ 5-bit adder                                           : 2
+ 5-bit addsub                                          : 1
+ 8-bit subtractor                                      : 1
+# Registers                                            : 28
+ 1-bit register                                        : 11
+ 13-bit register                                       : 1
+ 16-bit register                                       : 3
+ 2-bit register                                        : 2
+ 4-bit register                                        : 3
+ 5-bit register                                        : 2
+ 8-bit register                                        : 6
+# Comparators                                          : 5
+ 16-bit comparator equal                               : 1
+ 16-bit comparator greater                             : 2
+ 4-bit comparator greater                              : 1
+ 4-bit comparator lessequal                            : 1
+# Multiplexers                                         : 69
+ 1-bit 2-to-1 multiplexer                              : 18
+ 1-bit 8-to-1 multiplexer                              : 1
+ 13-bit 2-to-1 multiplexer                             : 3
+ 16-bit 2-to-1 multiplexer                             : 26
+ 16-bit 3-to-1 multiplexer                             : 1
+ 2-bit 2-to-1 multiplexer                              : 3
+ 4-bit 2-to-1 multiplexer                              : 8
+ 5-bit 2-to-1 multiplexer                              : 7
+ 8-bit 2-to-1 multiplexer                              : 2
+# Logic shifters                                       : 2
+ 16-bit shifter logical left                           : 1
+ 16-bit shifter logical right                          : 1
+# Xors                                                 : 1
+ 16-bit xor2                                           : 1
+
+=========================================================================
+INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+
+Synthesizing (advanced) Unit <Counter_1>.
+The following registers are absorbed into counter <counter.Cnt>: 1 register on signal <counter.Cnt>.
+Unit <Counter_1> synthesized (advanced).
+
+Synthesizing (advanced) Unit <Counter_2>.
+The following registers are absorbed into counter <counter.Cnt>: 1 register on signal <counter.Cnt>.
+Unit <Counter_2> synthesized (advanced).
+
+Synthesizing (advanced) Unit <j1>.
+The following registers are absorbed into counter <dsp>: 1 register on signal <dsp>.
+INFO:Xst:3226 - The RAM <Mram_ram> will be implemented as a BLOCK RAM, absorbing the following register(s): <mem_din> <insn>
+    -----------------------------------------------------------------------
+    | ram_type           | Block                               |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 16384-word x 16-bit                 |          |
+    |     mode           | read-first                          |          |
+    |     clkA           | connected to signal <sys_clk_i>     | rise     |
+    |     weA            | connected to internal node          | high     |
+    |     addrA          | connected to signal <_st0<14:1>>    |          |
+    |     diA            | connected to signal <io_dout>       |          |
+    |     doA            | connected to signal <mem_din>       |          |
+    -----------------------------------------------------------------------
+    | optimization       | speed                               |          |
+    -----------------------------------------------------------------------
+    | Port B                                                              |
+    |     aspect ratio   | 16384-word x 16-bit                 |          |
+    |     mode           | write-first                         |          |
+    |     clkB           | connected to signal <sys_clk_i>     | rise     |
+    |     addrB          | connected to signal <("0",_pc)>     |          |
+    |     doB            | connected to signal <insn>          |          |
+    -----------------------------------------------------------------------
+    | optimization       | speed                               |          |
+    -----------------------------------------------------------------------
+INFO:Xst:3231 - The small RAM <Mram_rstack> will be implemented on LUTs in order to maximize performance and save block RAM resources. If you want to force its implementation on block, use option/constraint ram_style.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 32-word x 16-bit                    |          |
+    |     clkA           | connected to signal <sys_clk_i>     | rise     |
+    |     weA            | connected to signal <_rstkW>        | high     |
+    |     addrA          | connected to signal <_rsp>          |          |
+    |     diA            | connected to signal <_rstkD>        |          |
+    -----------------------------------------------------------------------
+    | Port B                                                              |
+    |     aspect ratio   | 32-word x 16-bit                    |          |
+    |     addrB          | connected to signal <rsp>           |          |
+    |     doB            | connected to internal node          |          |
+    -----------------------------------------------------------------------
+INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_dstack> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 32-word x 16-bit                    |          |
+    |     clkA           | connected to signal <sys_clk_i>     | rise     |
+    |     weA            | connected to signal <_dstkW>        | high     |
+    |     addrA          | connected to signal <_dsp>          |          |
+    |     diA            | connected to signal <st0>           |          |
+    -----------------------------------------------------------------------
+    | Port B                                                              |
+    |     aspect ratio   | 32-word x 16-bit                    |          |
+    |     addrB          | connected to signal <dsp>           |          |
+    |     doB            | connected to signal <io_dout>       |          |
+    -----------------------------------------------------------------------
+Unit <j1> synthesized (advanced).
+
+Synthesizing (advanced) Unit <papilio_pro_j1>.
+The following registers are absorbed into counter <rst_counter>: 1 register on signal <rst_counter>.
+Unit <papilio_pro_j1> synthesized (advanced).
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# RAMs                                                 : 3
+ 16384x16-bit dual-port block RAM                      : 1
+ 32x16-bit dual-port distributed RAM                   : 2
+# Adders/Subtractors                                   : 10
+ 14-bit adder                                          : 1
+ 16-bit addsub                                         : 1
+ 2-bit adder                                           : 1
+ 3-bit subtractor                                      : 2
+ 4-bit adder                                           : 2
+ 5-bit adder                                           : 2
+ 5-bit addsub                                          : 1
+# Counters                                             : 4
+ 2-bit down counter                                    : 1
+ 4-bit down counter                                    : 1
+ 5-bit up counter                                      : 1
+ 8-bit down counter                                    : 1
+# Registers                                            : 95
+ Flip-Flops                                            : 95
+# Comparators                                          : 5
+ 16-bit comparator equal                               : 1
+ 16-bit comparator greater                             : 2
+ 4-bit comparator greater                              : 1
+ 4-bit comparator lessequal                            : 1
+# Multiplexers                                         : 79
+ 1-bit 2-to-1 multiplexer                              : 31
+ 1-bit 8-to-1 multiplexer                              : 1
+ 13-bit 2-to-1 multiplexer                             : 2
+ 16-bit 2-to-1 multiplexer                             : 26
+ 16-bit 3-to-1 multiplexer                             : 1
+ 2-bit 2-to-1 multiplexer                              : 2
+ 4-bit 2-to-1 multiplexer                              : 8
+ 5-bit 2-to-1 multiplexer                              : 7
+ 8-bit 2-to-1 multiplexer                              : 1
+# Logic shifters                                       : 2
+ 16-bit shifter logical left                           : 1
+ 16-bit shifter logical right                          : 1
+# Xors                                                 : 1
+ 16-bit xor2                                           : 1
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+WARNING:Xst:3002 - This design contains one or more registers/latches that are directly
+   incompatible with the Spartan6 architecture. The two primary causes of this is
+   either a register or latch described with both an asynchronous set and
+   asynchronous reset, or a register or latch described with an asynchronous
+   set or reset which however has an initialization value of the opposite 
+   polarity (i.e. asynchronous reset with an initialization value of 1).
+    While this circuit can be built, it creates a sub-optimal implementation
+   in terms of area, power and performance. For a more optimal implementation
+   Xilinx highly recommends one of the following:
+
+          1) Remove either the set or reset from all registers and latches
+             if not needed for required functionality
+          2) Modify the code in order to produce a synchronous set
+             and/or reset (both is preferred)
+          3) Ensure all registers have the same initialization value as the
+             described asynchronous set or reset polarity
+          4) Use the -async_to_sync option to transform the asynchronous
+             set/reset to synchronous operation
+             (timing simulation highly recommended when using this option)
+
+  Please refer to http://www.xilinx.com search string "Spartan6 asynchronous set/reset" for more details.
+
+  List of register instances with asynchronous set or reset and opposite initialization value:
+    Uart_Rxrate/counter.Cnt_7 in unit <MINIUART2>
+    Uart_Rxrate/counter.Cnt_6 in unit <MINIUART2>
+    Uart_Txrate/counter.Cnt_1 in unit <MINIUART2>
+    Uart_Txrate/counter.Cnt_0 in unit <MINIUART2>
+    Uart_Rxrate/counter.Cnt_4 in unit <MINIUART2>
+    Uart_Rxrate/counter.Cnt_3 in unit <MINIUART2>
+
+
+Optimizing unit <papilio_pro_j1> ...
+
+Optimizing unit <MINIUART2> ...
+
+Optimizing unit <TxUnit> ...
+
+Optimizing unit <RxUnit> ...
+
+Optimizing unit <j1> ...
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block papilio_pro_j1, actual ratio is 9.
+WARNING:Xst:1426 - The value init of the FF/Latch uart_inst/Uart_Rxrate/counter.Cnt_7_LD hinder the constant cleaning in the block papilio_pro_j1.
+   You should achieve better results by setting this init to 1.
+FlipFlop j1_inst/dsp_0 has been replicated 1 time(s)
+FlipFlop j1_inst/dsp_2 has been replicated 1 time(s)
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 122
+ Flip-Flops                                            : 122
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Design Summary                             *
+=========================================================================
+
+Top Level Output File Name         : papilio_pro_j1.ngc
+
+Primitive and Black Box Usage:
+------------------------------
+# BELS                             : 662
+#      GND                         : 1
+#      INV                         : 3
+#      LUT1                        : 12
+#      LUT2                        : 14
+#      LUT3                        : 61
+#      LUT4                        : 79
+#      LUT5                        : 110
+#      LUT6                        : 258
+#      MUXCY                       : 64
+#      MUXF7                       : 22
+#      VCC                         : 1
+#      XORCY                       : 37
+# FlipFlops/Latches                : 123
+#      FD                          : 13
+#      FDC                         : 9
+#      FDCE                        : 10
+#      FDE                         : 38
+#      FDP                         : 4
+#      FDPE                        : 3
+#      FDR                         : 43
+#      FDRE                        : 2
+#      LD                          : 1
+# RAMS                             : 28
+#      RAM32M                      : 4
+#      RAM32X1D                    : 8
+#      RAMB16BWER                  : 16
+# Clock Buffers                    : 3
+#      BUFG                        : 3
+# IO Buffers                       : 19
+#      IBUF                        : 1
+#      IBUFG                       : 1
+#      OBUF                        : 17
+# DCMs                             : 1
+#      DCM_SP                      : 1
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 6slx9ftg256-2 
+
+
+Slice Logic Utilization: 
+ Number of Slice Registers:             123  out of  11440     1%  
+ Number of Slice LUTs:                  569  out of   5720     9%  
+    Number used as Logic:               537  out of   5720     9%  
+    Number used as Memory:               32  out of   1440     2%  
+       Number used as RAM:               32
+
+Slice Logic Distribution: 
+ Number of LUT Flip Flop pairs used:    606
+   Number with an unused Flip Flop:     483  out of    606    79%  
+   Number with an unused LUT:            37  out of    606     6%  
+   Number of fully used LUT-FF pairs:    86  out of    606    14%  
+   Number of unique control sets:        19
+
+IO Utilization: 
+ Number of IOs:                          19
+ Number of bonded IOBs:                  19  out of    186    10%  
+
+Specific Feature Utilization:
+ Number of Block RAM/FIFO:               16  out of     32    50%  
+    Number using Block RAM only:         16
+ Number of BUFG/BUFGCTRLs:                3  out of     16    18%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+Timing Report
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)                          | Load  |
+-----------------------------------+------------------------------------------------+-------+
+clk_in                             | DCM_SP:CLKFX                                   | 73    |
+clk_in                             | DCM_SP:CLKFX180                                | 75    |
+uart_inst/LoadA                    | NONE(uart_inst/Uart_TxUnit/SyncLoad/C1A)       | 1     |
+uart_inst/Uart_RxUnit/RRegL        | NONE(uart_inst/Uart_RxUnit/RxAv)               | 1     |
+_n0024_inv(_n0024_inv11:O)         | NONE(*)(uart_inst/Uart_Rxrate/counter.Cnt_7_LD)| 1     |
+-----------------------------------+------------------------------------------------+-------+
+(*) This 1 clock signal(s) are generated by combinatorial logic,
+and XST is not able to identify which are the primary clock signals.
+Please use the CLOCK_SIGNAL constraint to specify the clock signal(s) generated by combinatorial logic.
+INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -2
+
+   Minimum period: 26.787ns (Maximum Frequency: 37.332MHz)
+   Minimum input arrival time before clock: 5.098ns
+   Maximum output required time after clock: 4.118ns
+   Maximum combinational path delay: No path found
+
+Timing Details:
+---------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk_in'
+  Clock period: 26.787ns (frequency: 37.332MHz)
+  Total number of paths / destination ports: 4303618 / 897
+-------------------------------------------------------------------------
+Delay:               13.393ns (Levels of Logic = 20)
+  Source:            j1_inst/Mram_ram15 (RAM)
+  Destination:       j1_inst/Mram_ram1 (RAM)
+  Source Clock:      clk_in rising 2.0X
+  Destination Clock: clk_in rising 2.0X
+
+  Data Path: j1_inst/Mram_ram15 to j1_inst/Mram_ram1
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     RAMB16BWER:CLKB->DOB0  146   2.100   2.351  j1_inst/Mram_ram15 (j1_inst/insn<14>)
+     LUT6:I5->O            1   0.254   0.790  j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_A322_G (N406)
+     LUT3:I1->O            5   0.250   1.069  j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_A3221 (j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_A321)
+     LUT6:I3->O            1   0.235   1.112  j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_A327_SW1_SW0 (N167)
+     LUT6:I1->O            1   0.254   0.682  j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_A327_SW1 (N93)
+     LUT6:I5->O            1   0.254   0.000  j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_rs_lut<1> (j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_rs_lut<1>)
+     MUXCY:S->O            1   0.215   0.000  j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_rs_cy<1> (j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_rs_cy<1>)
+     MUXCY:CI->O           1   0.023   0.000  j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_rs_cy<2> (j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_rs_cy<2>)
+     MUXCY:CI->O           1   0.023   0.000  j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_rs_cy<3> (j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_rs_cy<3>)
+     MUXCY:CI->O           1   0.023   0.000  j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_rs_cy<4> (j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_rs_cy<4>)
+     MUXCY:CI->O           1   0.023   0.000  j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_rs_cy<5> (j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_rs_cy<5>)
+     MUXCY:CI->O           1   0.023   0.000  j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_rs_cy<6> (j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_rs_cy<6>)
+     MUXCY:CI->O           1   0.023   0.000  j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_rs_cy<7> (j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_rs_cy<7>)
+     MUXCY:CI->O           1   0.023   0.000  j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_rs_cy<8> (j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_rs_cy<8>)
+     MUXCY:CI->O           1   0.023   0.000  j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_rs_cy<9> (j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_rs_cy<9>)
+     MUXCY:CI->O           1   0.023   0.000  j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_rs_cy<10> (j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_rs_cy<10>)
+     MUXCY:CI->O           1   0.023   0.000  j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_rs_cy<11> (j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_rs_cy<11>)
+     MUXCY:CI->O           1   0.023   0.000  j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_rs_cy<12> (j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_rs_cy<12>)
+     MUXCY:CI->O           1   0.023   0.000  j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_rs_cy<13> (j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_rs_cy<13>)
+     XORCY:CI->O           2   0.206   0.834  j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_rs_xor<14> (j1_inst/Mmux_st0sel[3]_st1[15]_wide_mux_28_OUT15_split<14>)
+     LUT6:I4->O           64   0.250   1.929  j1_inst/ramWE_GND_13_o_AND_1_o1 (j1_inst/ramWE_GND_13_o_AND_1_o)
+     RAMB16BWER:WEA0           0.330          j1_inst/Mram_ram1
+    ----------------------------------------
+    Total                     13.393ns (4.627ns logic, 8.766ns route)
+                                       (34.5% logic, 65.5% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'clk_in'
+  Total number of paths / destination ports: 13 / 13
+-------------------------------------------------------------------------
+Offset:              5.098ns (Levels of Logic = 3)
+  Source:            rx (PAD)
+  Destination:       uart_inst/Uart_RxUnit/RxProc.SampleCnt_1 (FF)
+  Destination Clock: clk_in rising 2.0X +180
+
+  Data Path: rx to uart_inst/Uart_RxUnit/RxProc.SampleCnt_1
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O            11   1.328   1.267  rx_IBUF (rx_IBUF)
+     LUT5:I2->O            2   0.235   0.834  uart_inst/Uart_RxUnit/Madd_RxProc.BitPos[3]_GND_22_o_add_16_OUT_xor<1>111 (uart_inst/Uart_RxUnit/Madd_RxProc.BitPos[3]_GND_22_o_add_16_OUT_xor<1>11)
+     LUT5:I3->O            2   0.250   0.725  uart_inst/Uart_RxUnit/_n00991 (uart_inst/Uart_RxUnit/_n0099)
+     FDRE:R                    0.459          uart_inst/Uart_RxUnit/RxProc.SampleCnt_0
+    ----------------------------------------
+    Total                      5.098ns (2.272ns logic, 2.826ns route)
+                                       (44.6% logic, 55.4% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk_in'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              4.118ns (Levels of Logic = 1)
+  Source:            uart_inst/Uart_TxUnit/TxD (FF)
+  Destination:       tx (PAD)
+  Source Clock:      clk_in rising 2.0X +180
+
+  Data Path: uart_inst/Uart_TxUnit/TxD to tx
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDPE:C->Q             1   0.525   0.681  uart_inst/Uart_TxUnit/TxD (uart_inst/Uart_TxUnit/TxD)
+     OBUF:I->O                 2.912          tx_OBUF (tx)
+    ----------------------------------------
+    Total                      4.118ns (3.437ns logic, 0.681ns route)
+                                       (83.5% logic, 16.5% route)
+
+=========================================================================
+
+Cross Clock Domains Report:
+--------------------------
+
+Clock to Setup on destination clock clk_in
+---------------------------+---------+---------+---------+---------+
+                           | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock               |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------+---------+---------+---------+---------+
+_n0024_inv                 |         |    5.340|         |         |
+clk_in                     |   13.393|         |         |         |
+uart_inst/LoadA            |    1.280|         |         |         |
+uart_inst/Uart_RxUnit/RRegL|    7.611|         |         |         |
+---------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock uart_inst/LoadA
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+clk_in         |    1.709|         |         |         |
+---------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock uart_inst/Uart_RxUnit/RRegL
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+clk_in         |    3.136|         |         |         |
+---------------+---------+---------+---------+---------+
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 15.00 secs
+Total CPU time to Xst completion: 14.90 secs
+ 
+--> 
+
+Total memory usage is 4544364 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :   11 (   0 filtered)
+Number of infos    :    5 (   0 filtered)
+

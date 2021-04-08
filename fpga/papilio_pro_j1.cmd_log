@@ -1,0 +1,43 @@
+xst -intstyle ise -ifn "D:/FORTH/FPGA_FORTH/2020/j1 eForth/j1eforth_papilio_pro/fpga/papilio_pro_j1.xst" -ofn "D:/FORTH/FPGA_FORTH/2020/j1 eForth/j1eforth_papilio_pro/fpga/papilio_pro_j1.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc "src/papilio-pro.ucf" -p xc6slx9-tqg144-3 "papilio_pro_j1.ngc" papilio_pro_j1.ngd  
+map -intstyle ise -p xc6slx9-tqg144-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -ir off -pr off -lc off -power off -o papilio_pro_j1_map.ncd papilio_pro_j1.ngd papilio_pro_j1.pcf 
+par -w -intstyle ise -ol high -mt off papilio_pro_j1_map.ncd papilio_pro_j1.ncd papilio_pro_j1.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml papilio_pro_j1.twx papilio_pro_j1.ncd -o papilio_pro_j1.twr papilio_pro_j1.pcf 
+bitgen -intstyle ise -f papilio_pro_j1.ut papilio_pro_j1.ncd 
+bitgen -intstyle ise -f papilio_pro_j1.ut papilio_pro_j1.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc "src/papilio-pro.ucf" -p xc6slx9-tqg144-3 "papilio_pro_j1.ngc" papilio_pro_j1.ngd  
+map -intstyle ise -p xc6slx9-tqg144-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -ir off -pr off -lc off -power off -o papilio_pro_j1_map.ncd papilio_pro_j1.ngd papilio_pro_j1.pcf 
+par -w -intstyle ise -ol high -mt off papilio_pro_j1_map.ncd papilio_pro_j1.ncd papilio_pro_j1.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml papilio_pro_j1.twx papilio_pro_j1.ncd -o papilio_pro_j1.twr papilio_pro_j1.pcf 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc "src/papilio-pro.ucf" -p xc6slx9-tqg144-3 "papilio_pro_j1.ngc" papilio_pro_j1.ngd  
+map -intstyle ise -p xc6slx9-tqg144-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -ir off -pr off -lc off -power off -o papilio_pro_j1_map.ncd papilio_pro_j1.ngd papilio_pro_j1.pcf 
+par -w -intstyle ise -ol high -mt off papilio_pro_j1_map.ncd papilio_pro_j1.ncd papilio_pro_j1.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml papilio_pro_j1.twx papilio_pro_j1.ncd -o papilio_pro_j1.twr papilio_pro_j1.pcf 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc "src/papilio-pro.ucf" -p xc6slx9-tqg144-3 "papilio_pro_j1.ngc" papilio_pro_j1.ngd  
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc "src/papilio-pro.ucf" -p xc6slx9-tqg144-3 "papilio_pro_j1.ngc" papilio_pro_j1.ngd  
+map -intstyle ise -p xc6slx9-tqg144-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -ir off -pr off -lc off -power off -o papilio_pro_j1_map.ncd papilio_pro_j1.ngd papilio_pro_j1.pcf 
+par -w -intstyle ise -ol high -mt off papilio_pro_j1_map.ncd papilio_pro_j1.ncd papilio_pro_j1.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml papilio_pro_j1.twx papilio_pro_j1.ncd -o papilio_pro_j1.twr papilio_pro_j1.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml papilio_pro_j1_preroute.twx papilio_pro_j1_map.ncd -o papilio_pro_j1_preroute.twr papilio_pro_j1.pcf -ucf {D:/FORTH/FPGA_FORTH/2020/j1 eForth/j1eforth_papilio_pro/fpga/src/papilio-pro.ucf} 
+xst -intstyle ise -ifn "D:/FORTH/FPGA_FORTH/2020/j1 eForth/AX309_j1eforth/fpga/papilio_pro_j1.xst" -ofn "D:/FORTH/FPGA_FORTH/2020/j1 eForth/AX309_j1eforth/fpga/papilio_pro_j1.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc ax309.ucf -p xc6slx9-tqg144-3 "papilio_pro_j1.ngc" papilio_pro_j1.ngd  
+map -intstyle ise -p xc6slx9-tqg144-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -ir off -pr off -lc off -power off -o papilio_pro_j1_map.ncd papilio_pro_j1.ngd papilio_pro_j1.pcf 
+xst -intstyle ise -ifn "D:/FORTH/FPGA_FORTH/2020/j1 eForth/AX309_j1eforth/fpga/papilio_pro_j1.xst" -ofn "D:/FORTH/FPGA_FORTH/2020/j1 eForth/AX309_j1eforth/fpga/papilio_pro_j1.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc ax309.ucf -p xc6slx9-ftg256-2 "papilio_pro_j1.ngc" papilio_pro_j1.ngd  
+map -intstyle ise -p xc6slx9-ftg256-2 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -ir off -pr off -lc off -power off -o papilio_pro_j1_map.ncd papilio_pro_j1.ngd papilio_pro_j1.pcf 
+par -w -intstyle ise -ol high -mt off papilio_pro_j1_map.ncd papilio_pro_j1.ncd papilio_pro_j1.pcf 
+trce -intstyle ise -v 3 -s 2 -n 3 -fastpaths -xml papilio_pro_j1.twx papilio_pro_j1.ncd -o papilio_pro_j1.twr papilio_pro_j1.pcf -ucf ax309.ucf 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc ax309.ucf -p xc6slx9-ftg256-2 "papilio_pro_j1.ngc" papilio_pro_j1.ngd  
+map -intstyle ise -p xc6slx9-ftg256-2 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -ir off -pr off -lc off -power off -o papilio_pro_j1_map.ncd papilio_pro_j1.ngd papilio_pro_j1.pcf 
+par -w -intstyle ise -ol high -mt off papilio_pro_j1_map.ncd papilio_pro_j1.ncd papilio_pro_j1.pcf 
+trce -intstyle ise -v 3 -s 2 -n 3 -fastpaths -xml papilio_pro_j1.twx papilio_pro_j1.ncd -o papilio_pro_j1.twr papilio_pro_j1.pcf -ucf ax309.ucf 
+xst -intstyle ise -ifn "D:/FORTH/FPGA_FORTH/2020/j1 eForth/AX309_j1eforth/fpga/papilio_pro_j1.xst" -ofn "D:/FORTH/FPGA_FORTH/2020/j1 eForth/AX309_j1eforth/fpga/papilio_pro_j1.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc ax309.ucf -p xc6slx9-ftg256-2 "papilio_pro_j1.ngc" papilio_pro_j1.ngd  
+map -intstyle ise -p xc6slx9-ftg256-2 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -ir off -pr off -lc off -power off -o papilio_pro_j1_map.ncd papilio_pro_j1.ngd papilio_pro_j1.pcf 
+par -w -intstyle ise -ol high -mt off papilio_pro_j1_map.ncd papilio_pro_j1.ncd papilio_pro_j1.pcf 
+trce -intstyle ise -v 3 -s 2 -n 3 -fastpaths -xml papilio_pro_j1.twx papilio_pro_j1.ncd -o papilio_pro_j1.twr papilio_pro_j1.pcf -ucf ax309.ucf 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc ax309.ucf -p xc6slx9-ftg256-2 "papilio_pro_j1.ngc" papilio_pro_j1.ngd  
+map -intstyle ise -p xc6slx9-ftg256-2 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -ir off -pr off -lc off -power off -o papilio_pro_j1_map.ncd papilio_pro_j1.ngd papilio_pro_j1.pcf 
+par -w -intstyle ise -ol high -mt off papilio_pro_j1_map.ncd papilio_pro_j1.ncd papilio_pro_j1.pcf 
+trce -intstyle ise -v 3 -s 2 -n 3 -fastpaths -xml papilio_pro_j1.twx papilio_pro_j1.ncd -o papilio_pro_j1.twr papilio_pro_j1.pcf -ucf ax309.ucf 
+bitgen -intstyle ise -f papilio_pro_j1.ut papilio_pro_j1.ncd 
