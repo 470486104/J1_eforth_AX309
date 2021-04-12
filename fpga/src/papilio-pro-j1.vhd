@@ -13,7 +13,7 @@ end papilio_pro_j1;
 architecture Behavioral of papilio_pro_j1 is
 
 	component clock is
-   port (
+	port (
 		clk_in:				in  std_logic;
 		clk:					out std_logic;
 		clk180:				out std_logic);
@@ -90,7 +90,8 @@ begin
 		io_din	=> io_dout,
 		io_dout	=> uart_dout);
 					
-	process (clk, rst_counter)
+	--每一个时钟上升沿 都使 复位计数器-1 ， rst_counter初始值为15
+	process (clk, rst_counter) 
 	begin
 		if rising_edge(clk) and rst_counter>0 then
 			rst_counter <= rst_counter-1;
@@ -99,9 +100,9 @@ begin
 	sys_rst <= '1' when rst_counter>0 else '0';
 	
 --	uart_en <= '1' when io_addr(15 downto 1)="111100000000000" else '0';
-	uart_en <= '1' when io_addr(15 downto 12)="1111" else '0';
-	uart_rd <= io_rd and uart_en;
-	uart_wr <= io_wr and uart_en;
+	uart_en <= '1' when io_addr(15 downto 12)="1111" else '0';	-- io地址高4位为1111表示读写请求？  读写请求则使串口可以传输数据
+	uart_rd <= io_rd and uart_en;								-- io目前可读 且 串口可以传输数据  则 uart_rd='1'
+	uart_wr <= io_wr and uart_en;								-- 同上
 	
 	process (io_addr, uart_dout)
 	begin

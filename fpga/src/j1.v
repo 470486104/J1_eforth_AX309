@@ -29,11 +29,16 @@ SUCH DAMAGE.
 */
 
 module j1(
-   input sys_clk_i, input sys_rst_i, input [15:0] io_din,
-   output io_rd, output io_wr, output [15:0] io_addr, output [15:0] io_dout);
+   input sys_clk_i, 
+   input sys_rst_i, 
+   input [15:0] io_din,
+   output io_rd,
+   output io_wr, 
+   output [15:0] io_addr, 
+   output [15:0] io_dout);
 
-  reg [15:0] insn;
-  wire [15:0] immediate = { 1'b0, insn[14:0] };
+  reg [15:0] insn;								//指令
+  wire [15:0] immediate = { 1'b0, insn[14:0] };	
 
   reg [4:0] dsp;  // Data stack pointer
   reg [4:0] _dsp;
@@ -55,15 +60,15 @@ module j1(
   // The D and R stacks
   reg [15:0] dstack[0:31];
   reg [15:0] rstack[0:31];
-  always @(posedge sys_clk_i)
+  always @(posedge sys_clk_i)		//在系统时钟上升沿 如果 使能端 = 1 把数据写入到堆栈
   begin
     if (_dstkW)
       dstack[_dsp] = st0;
     if (_rstkW)
       rstack[_rsp] = _rstkD;
   end
-  wire [15:0] st1 = dstack[dsp];
-  wire [15:0] rst0 = rstack[rsp];
+  wire [15:0] st1 = dstack[dsp];	// 数据堆栈 栈顶元素
+  wire [15:0] rst0 = rstack[rsp];	// 返回堆栈 栈顶元素
 
   // st0sel is the ALU operation.  For branch and call the operation
   // is T, for 0branch it is N.  For ALU ops it is loaded from the instruction
@@ -82,7 +87,8 @@ module j1(
 
 
   // Papilio Pro: main memory to be infered instead of specified explitely.
-  reg [15:0] ram[0:16383]; initial $readmemh("../j1.hex", ram);
+  reg [15:0] ram[0:16383]; 
+  initial $readmemh("../j1.hex", ram);
 
   reg [15:0] mem_din;
   always @(posedge sys_clk_i) begin
@@ -142,7 +148,7 @@ module j1(
       _rsp = rsp;
       _rstkW = 0;
       _rstkD = _pc;
-    end else if (is_alu) begin
+    end else if (is_alu) begin				// +
       _dsp = dsp + {dd[1], dd[1], dd[1], dd};
       _rsp = rsp + {rd[1], rd[1], rd[1], rd};
       _rstkW = insn[6];
@@ -154,7 +160,7 @@ module j1(
       end else begin
         _dsp = dsp;
       end
-      if (insn[15:13] == 3'b010) begin // call
+      if (insn[15:13] == 3'b010) begin 		// call
         _rsp = rsp + 1;
         _rstkW = 1;
         _rstkD = {pc_plus_1[14:0], 1'b0};

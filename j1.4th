@@ -11,21 +11,22 @@ wordlist constant meta.1
 wordlist constant target.1
 wordlist constant assembler.1
 
-: (order) ( w wid*n n -- wid*n w n )
+: (order) ( w wid*n n -- wid*n w n ) 
+\ w表示一个词表  wid*n表示wid1、wid2···widn  n表示n个词表
    dup if
     1- swap >r recurse over r@ xor if
      1+ r> -rot exit then r> drop then ;
-: -order ( wid -- ) get-order (order) nip set-order ;
+: -order ( wid -- ) get-order (order) nip set-order ; \ 
 : +order ( wid -- ) dup >r -order get-order r> swap 1+ set-order ;
 
 : ]asm ( -- ) assembler.1 +order ; immediate
 
 get-current meta.1 set-current
 
-: [a] ( "name" -- )
+: [a] ( "name" -- ) \如果该词在汇编列表中，则把该词的执行地址（代码指针域地址）编译到使用本词的定义中（即本定义词的参数域中）
   parse-word assembler.1 search-wordlist 0=
    abort" [a]?" compile, ; immediate
-: a: ( "name" -- )
+: a: ( "name" -- ) \把一个词汇加入到汇编词列表中
   get-current >r  assembler.1 set-current
   : r> set-current ;
 

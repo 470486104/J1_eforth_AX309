@@ -5,31 +5,32 @@
 #include <stdint.h>
 #include <sys/stat.h>
 #if defined(unix) || defined(__unix__) || defined(__unix) || (defined(__APPLE__) && defined(__MACH__))
-#include <unistd.h>
-#include <termios.h>
-int getch(void) { /* reads from keypress, doesn't echo */
-    struct termios oldattr, newattr;
-    int ch;
-    tcgetattr( STDIN_FILENO, &oldattr );
-    newattr = oldattr;
-    newattr.c_iflag &= ~( ICRNL );
-    newattr.c_lflag &= ~( ICANON | ECHO );
-    tcsetattr( STDIN_FILENO, TCSANOW, &newattr );
-    ch = getchar();
-    tcsetattr( STDIN_FILENO, TCSANOW, &oldattr );
-    // printf("%d\n", ch);
-	if(ch==0x1b) exit(0);
-    return ch==127 ? 8 : ch;
-}
-int putch(int c) { /* output character to sstdout & flush */
-    int res=putchar(c);
-    fflush(stdout);
-    return res;
-}
+	#include <unistd.h>
+	#include <termios.h>
+	int getch(void) { /* reads from keypress, doesn't echo */
+	    struct termios oldattr, newattr;
+	    int ch;
+	    tcgetattr( STDIN_FILENO, &oldattr );
+	    newattr = oldattr;
+	    newattr.c_iflag &= ~( ICRNL );
+	    newattr.c_lflag &= ~( ICANON | ECHO );
+	    tcsetattr( STDIN_FILENO, TCSANOW, &newattr );
+	    ch = getchar();
+	    tcsetattr( STDIN_FILENO, TCSANOW, &oldattr );
+	    // printf("%d\n", ch);
+		if(ch==0x1b) exit(0);
+	    return ch==127 ? 8 : ch;
+	}
+	int putch(int c) { /* output character to sstdout & flush */
+	    int res=putchar(c);
+	    fflush(stdout);
+	    return res;
+	}
 #endif
+
 int len = 0;
 static pcap_t* handle = NULL;
-static void pcapdev_init(void) {
+static void pcapdev_init(void) {        //初始化网络连接？？？？
     char errbuf[PCAP_ERRBUF_SIZE];
     pcap_if_t* devices;
     if (pcap_findalldevs(&devices, errbuf) == -1) {
@@ -78,7 +79,7 @@ static int pop(void) // pop value from the data stack and return it
   dsp = 0x1f & (dsp - 1);
   return v;
 }
-char eth_poll() {
+char eth_poll() {   // 数据包长???？
     const u_char* packet;
     struct pcap_pkthdr* header;
     int res = 0;
@@ -90,7 +91,7 @@ char eth_poll() {
     memcpy(&memory[0x2000], packet, len);
 	return len;
 }
-void eth_transmit(void) {
+void eth_transmit(void) { // 发送数据？
   if ((pcap_sendpacket(handle, (char *)(&memory[0x2000]), len) == -1))
   {
       printf("sorry send error\n");
@@ -98,7 +99,7 @@ void eth_transmit(void) {
   }
 }
 
-static void execute(int entrypoint)
+static void execute(int entrypoint)  // 指令执行
 {
   int _pc, _t;
   int insn = 0x4000 | entrypoint; // first insn: "call entrypoint"
@@ -108,7 +109,7 @@ static void execute(int entrypoint)
     if (insn & 0x8000) { // literal
       push(insn & 0x7fff);
     } else {
-      int target = insn & 0x1fff;
+      int target = insn & 0x1fff; 
       switch (insn >> 13) {
       case 0: // jump
         _pc = target;
