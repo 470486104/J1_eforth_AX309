@@ -16,8 +16,8 @@ wordlist constant assembler.1
    dup if
     1- swap >r recurse over r@ xor if
      1+ r> -rot exit then r> drop then ;
-: -order ( wid -- ) get-order (order) nip set-order ; \ 
-: +order ( wid -- ) dup >r -order get-order r> swap 1+ set-order ;
+: -order ( wid -- ) get-order (order) nip set-order ; \ 把词表从搜索词表的序列中删除 ，get-order返回结果widn~wid1 n（wid1为栈顶元素，n为词表wid个数）
+: +order ( wid -- ) dup >r -order get-order r> swap 1+ set-order ; \ 把词表添加搜索词表的序列中
 
 : ]asm ( -- ) assembler.1 +order ; immediate
 
