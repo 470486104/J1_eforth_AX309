@@ -12,14 +12,14 @@ wordlist constant target.1
 wordlist constant assembler.1
 
 : (order) ( w wid*n n -- wid*n w n ) 
-\ w表示一个词表  wid*n表示wid1、wid2···widn  n表示n个词表
+\ w表示一个词表  wid*n表示wid1、wid2···widn  n表示n个词表 ；该词的功能为从当前搜索词表中找出该词并丢弃wid*[n-1] w n，若无该词不进行任何操作wid*n w n
    dup if
     1- swap >r recurse over r@ xor if
      1+ r> -rot exit then r> drop then ;
 : -order ( wid -- ) get-order (order) nip set-order ; \ 把词表从搜索词表的序列中删除 ，get-order返回结果widn~wid1 n（wid1为栈顶元素，n为词表wid个数）
 : +order ( wid -- ) dup >r -order get-order r> swap 1+ set-order ; \ 把词表添加搜索词表的序列中
 
-: ]asm ( -- ) assembler.1 +order ; immediate
+: ]asm ( -- ) assembler.1 +order ; immediate \把汇编词表加入到搜索队列中
 
 get-current meta.1 set-current
 
@@ -32,11 +32,11 @@ get-current meta.1 set-current
 
 target.1 +order meta.1 +order
 
-a: asm[ ( -- ) assembler.1 -order ; immediate
+a: asm[ ( -- ) assembler.1 -order ; immediate \ asm[ 功能：把汇编词表从搜索表中删除
 
-create tflash 1000 cells here over erase allot
+create tflash 1000 cells here over erase allot \ 创建一个数组tflash，1000个单元大小，并且清空单元内的所有废数据，将here指针向后推进1000个单元
 
-variable tdp
+variable tdp 	
 
 : there tdp @ ;
 : tc! tflash + c! ;
