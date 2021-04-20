@@ -4,13 +4,13 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.16 secs
+Total CPU time to Xst completion: 0.33 secs
  
 --> Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.16 secs
+Total CPU time to Xst completion: 0.33 secs
  
 --> Reading design: papilio_pro_j1.prj
 
@@ -105,26 +105,26 @@ Slice Utilization Ratio Delta      : 5
 =========================================================================
 *                          HDL Parsing                                  *
 =========================================================================
-Analyzing Verilog file "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\j1.v" into library work
+Analyzing Verilog file "D:\GitHub_work\J1_eforth_AX309\fpga\src\j1.v" into library work
 Parsing module <j1>.
-Parsing VHDL file "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\utils.vhd" into library work
+Parsing VHDL file "D:\GitHub_work\J1_eforth_AX309\fpga\src\utils.vhd" into library work
 Parsing entity <synchroniser>.
 Parsing architecture <Behaviour> of entity <synchroniser>.
 Parsing entity <Counter>.
 Parsing architecture <Behaviour> of entity <counter>.
-Parsing VHDL file "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\Txunit.vhd" into library work
+Parsing VHDL file "D:\GitHub_work\J1_eforth_AX309\fpga\src\Txunit.vhd" into library work
 Parsing entity <TxUnit>.
 Parsing architecture <Behaviour> of entity <txunit>.
-Parsing VHDL file "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\Rxunit.vhd" into library work
+Parsing VHDL file "D:\GitHub_work\J1_eforth_AX309\fpga\src\Rxunit.vhd" into library work
 Parsing entity <RxUnit>.
 Parsing architecture <Behaviour> of entity <rxunit>.
-Parsing VHDL file "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\miniuart.vhd" into library work
+Parsing VHDL file "D:\GitHub_work\J1_eforth_AX309\fpga\src\miniuart.vhd" into library work
 Parsing entity <MINIUART2>.
 Parsing architecture <Behaviour> of entity <miniuart2>.
-Parsing VHDL file "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\clock.vhd" into library work
+Parsing VHDL file "D:\GitHub_work\J1_eforth_AX309\fpga\src\clock.vhd" into library work
 Parsing entity <clock>.
 Parsing architecture <BEHAVIORAL> of entity <clock>.
-Parsing VHDL file "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\papilio-pro-j1.vhd" into library work
+Parsing VHDL file "D:\GitHub_work\J1_eforth_AX309\fpga\src\papilio-pro-j1.vhd" into library work
 Parsing entity <papilio_pro_j1>.
 Parsing architecture <Behavioral> of entity <papilio_pro_j1>.
 
@@ -139,17 +139,17 @@ Going to verilog side to elaborate module j1
 
 Elaborating module <j1>.
 Reading initialization file \"../j1.hex\".
-WARNING:HDLCompiler:1670 - "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\j1.v" Line 85: Signal <ram> in initial block is partially initialized.
-WARNING:HDLCompiler:413 - "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\j1.v" Line 114: Result of 32-bit expression is truncated to fit in 16-bit target.
-WARNING:HDLCompiler:413 - "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\j1.v" Line 141: Result of 6-bit expression is truncated to fit in 5-bit target.
-WARNING:HDLCompiler:413 - "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\j1.v" Line 153: Result of 32-bit expression is truncated to fit in 5-bit target.
-WARNING:HDLCompiler:413 - "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\j1.v" Line 158: Result of 6-bit expression is truncated to fit in 5-bit target.
-WARNING:HDLCompiler:413 - "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\j1.v" Line 179: Result of 15-bit expression is truncated to fit in 13-bit target.
-WARNING:HDLCompiler:413 - "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\j1.v" Line 181: Result of 16-bit expression is truncated to fit in 13-bit target.
+WARNING:HDLCompiler:1670 - "D:\GitHub_work\J1_eforth_AX309\fpga\src\j1.v" Line 89: Signal <ram> in initial block is partially initialized.
+WARNING:HDLCompiler:413 - "D:\GitHub_work\J1_eforth_AX309\fpga\src\j1.v" Line 118: Result of 32-bit expression is truncated to fit in 16-bit target.
+WARNING:HDLCompiler:413 - "D:\GitHub_work\J1_eforth_AX309\fpga\src\j1.v" Line 145: Result of 6-bit expression is truncated to fit in 5-bit target.
+WARNING:HDLCompiler:413 - "D:\GitHub_work\J1_eforth_AX309\fpga\src\j1.v" Line 157: Result of 32-bit expression is truncated to fit in 5-bit target.
+WARNING:HDLCompiler:413 - "D:\GitHub_work\J1_eforth_AX309\fpga\src\j1.v" Line 162: Result of 6-bit expression is truncated to fit in 5-bit target.
+WARNING:HDLCompiler:413 - "D:\GitHub_work\J1_eforth_AX309\fpga\src\j1.v" Line 183: Result of 15-bit expression is truncated to fit in 13-bit target.
+WARNING:HDLCompiler:413 - "D:\GitHub_work\J1_eforth_AX309\fpga\src\j1.v" Line 185: Result of 16-bit expression is truncated to fit in 13-bit target.
 Back to vhdl to continue elaboration
 
 Elaborating entity <MINIUART2> (architecture <Behaviour>) with generics from library <work>.
-WARNING:HDLCompiler:1127 - "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\miniuart.vhd" Line 101: Assignment to sig0 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "D:\GitHub_work\J1_eforth_AX309\fpga\src\miniuart.vhd" Line 101: Assignment to sig0 ignored, since the identifier is never used
 
 Elaborating entity <Counter> (architecture <Behaviour>) with generics from library <work>.
 
@@ -166,10 +166,10 @@ Elaborating entity <RxUnit> (architecture <Behaviour>) from library <work>.
 =========================================================================
 
 Synthesizing Unit <papilio_pro_j1>.
-    Related source file is "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\papilio-pro-j1.vhd".
+    Related source file is "D:\GitHub_work\J1_eforth_AX309\fpga\src\papilio-pro-j1.vhd".
     Found 4-bit register for signal <rst_counter>.
-    Found 4-bit subtractor for signal <GND_4_o_GND_4_o_sub_2_OUT<3:0>> created at line 96.
-    Found 4-bit comparator greater for signal <sys_rst> created at line 99
+    Found 4-bit subtractor for signal <GND_4_o_GND_4_o_sub_2_OUT<3:0>> created at line 97.
+    Found 4-bit comparator greater for signal <sys_rst> created at line 100
     Summary:
 	inferred   1 Adder/Subtractor(s).
 	inferred   4 D-type flip-flop(s).
@@ -178,13 +178,13 @@ Synthesizing Unit <papilio_pro_j1>.
 Unit <papilio_pro_j1> synthesized.
 
 Synthesizing Unit <clock>.
-    Related source file is "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\clock.vhd".
+    Related source file is "D:\GitHub_work\J1_eforth_AX309\fpga\src\clock.vhd".
     Summary:
 	no macro.
 Unit <clock> synthesized.
 
 Synthesizing Unit <j1>.
-    Related source file is "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\j1.v".
+    Related source file is "D:\GitHub_work\J1_eforth_AX309\fpga\src\j1.v".
     Found 32x16-bit dual-port RAM <Mram_dstack> for signal <dstack>.
     Found 32x16-bit dual-port RAM <Mram_rstack> for signal <rstack>.
     Found 16384x16-bit dual-port RAM <Mram_ram> for signal <ram>.
@@ -194,23 +194,23 @@ Synthesizing Unit <j1>.
     Found 16-bit register for signal <st0>.
     Found 5-bit register for signal <rsp>.
     Found 16-bit register for signal <insn>.
-    Found 14-bit adder for signal <n0148[13:0]> created at line 53.
-    Found 16-bit adder for signal <st0[15]_st1[15]_add_15_OUT> created at line 106.
-    Found 5-bit adder for signal <dsp[4]_GND_13_o_add_36_OUT> created at line 141.
-    Found 5-bit adder for signal <dsp[4]_dd[1]_add_37_OUT> created at line 146.
-    Found 5-bit adder for signal <rsp[4]_rd[1]_add_38_OUT> created at line 147.
-    Found 5-bit adder for signal <rsp[4]_GND_13_o_add_43_OUT> created at line 158.
-    Found 16-bit subtractor for signal <GND_13_o_GND_13_o_sub_24_OUT<15:0>> created at line 114.
-    Found 5-bit subtractor for signal <GND_13_o_GND_13_o_sub_41_OUT<4:0>> created at line 153.
-    Found 16-bit shifter logical right for signal <st1[15]_st0[3]_shift_right_22_OUT> created at line 113
-    Found 16-bit shifter logical left for signal <st1[15]_st0[3]_shift_left_26_OUT> created at line 117
-    Found 16-bit 16-to-1 multiplexer for signal <st0sel[3]_st1[15]_wide_mux_28_OUT> created at line 103.
-    Found 5-bit 4-to-1 multiplexer for signal <_n0193> created at line 150.
-    Found 5-bit 3-to-1 multiplexer for signal <_n0195> created at line 150.
-    Found 16-bit 3-to-1 multiplexer for signal <_n0197> created at line 150.
-    Found 16-bit comparator equal for signal <st1[15]_st0[15]_equal_21_o> created at line 111
-    Found 16-bit comparator greater for signal <st0[15]_st1[15]_LessThan_22_o> created at line 112
-    Found 16-bit comparator greater for signal <st1[15]_st0[15]_LessThan_28_o> created at line 119
+    Found 14-bit adder for signal <n0148[13:0]> created at line 57.
+    Found 16-bit adder for signal <st0[15]_st1[15]_add_15_OUT> created at line 110.
+    Found 5-bit adder for signal <dsp[4]_GND_13_o_add_36_OUT> created at line 145.
+    Found 5-bit adder for signal <dsp[4]_dd[1]_add_37_OUT> created at line 150.
+    Found 5-bit adder for signal <rsp[4]_rd[1]_add_38_OUT> created at line 151.
+    Found 5-bit adder for signal <rsp[4]_GND_13_o_add_43_OUT> created at line 162.
+    Found 16-bit subtractor for signal <GND_13_o_GND_13_o_sub_24_OUT<15:0>> created at line 118.
+    Found 5-bit subtractor for signal <GND_13_o_GND_13_o_sub_41_OUT<4:0>> created at line 157.
+    Found 16-bit shifter logical right for signal <st1[15]_st0[3]_shift_right_22_OUT> created at line 117
+    Found 16-bit shifter logical left for signal <st1[15]_st0[3]_shift_left_26_OUT> created at line 121
+    Found 16-bit 16-to-1 multiplexer for signal <st0sel[3]_st1[15]_wide_mux_28_OUT> created at line 107.
+    Found 5-bit 4-to-1 multiplexer for signal <_n0193> created at line 154.
+    Found 5-bit 3-to-1 multiplexer for signal <_n0195> created at line 154.
+    Found 16-bit 3-to-1 multiplexer for signal <_n0197> created at line 154.
+    Found 16-bit comparator equal for signal <st1[15]_st0[15]_equal_21_o> created at line 115
+    Found 16-bit comparator greater for signal <st0[15]_st1[15]_LessThan_22_o> created at line 116
+    Found 16-bit comparator greater for signal <st1[15]_st0[15]_LessThan_28_o> created at line 123
     Summary:
 	inferred   3 RAM(s).
 	inferred   5 Adder/Subtractor(s).
@@ -221,7 +221,7 @@ Synthesizing Unit <j1>.
 Unit <j1> synthesized.
 
 Synthesizing Unit <MINIUART2>.
-    Related source file is "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\miniuart.vhd".
+    Related source file is "D:\GitHub_work\J1_eforth_AX309\fpga\src\miniuart.vhd".
         BRDIVISOR = 217
 WARNING:Xst:647 - Input <io_din<15:8>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
     Found 8-bit register for signal <TxData>.
@@ -233,7 +233,7 @@ WARNING:Xst:647 - Input <io_din<15:8>> is never used. This port will be preserve
 Unit <MINIUART2> synthesized.
 
 Synthesizing Unit <Counter_1>.
-    Related source file is "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\utils.vhd".
+    Related source file is "D:\GitHub_work\J1_eforth_AX309\fpga\src\utils.vhd".
         Count = 217
     Found 1-bit register for signal <O>.
     Found 8-bit register for signal <counter.Cnt>.
@@ -245,7 +245,7 @@ Synthesizing Unit <Counter_1>.
 Unit <Counter_1> synthesized.
 
 Synthesizing Unit <Counter_2>.
-    Related source file is "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\utils.vhd".
+    Related source file is "D:\GitHub_work\J1_eforth_AX309\fpga\src\utils.vhd".
         Count = 4
     Found 1-bit register for signal <O>.
     Found 2-bit register for signal <counter.Cnt>.
@@ -257,7 +257,7 @@ Synthesizing Unit <Counter_2>.
 Unit <Counter_2> synthesized.
 
 Synthesizing Unit <TxUnit>.
-    Related source file is "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\Txunit.vhd".
+    Related source file is "D:\GitHub_work\J1_eforth_AX309\fpga\src\Txunit.vhd".
     Found 1-bit register for signal <TxD>.
     Found 1-bit register for signal <TBufL>.
     Found 4-bit register for signal <TxProc.BitPos>.
@@ -273,7 +273,7 @@ Synthesizing Unit <TxUnit>.
 Unit <TxUnit> synthesized.
 
 Synthesizing Unit <synchroniser>.
-    Related source file is "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\utils.vhd".
+    Related source file is "D:\GitHub_work\J1_eforth_AX309\fpga\src\utils.vhd".
     Found 1-bit register for signal <C1S>.
     Found 1-bit register for signal <C1A>.
     Found 1-bit register for signal <R>.
@@ -282,7 +282,7 @@ Synthesizing Unit <synchroniser>.
 Unit <synchroniser> synthesized.
 
 Synthesizing Unit <RxUnit>.
-    Related source file is "D:\FORTH\FPGA_FORTH\2020\j1 eForth\AX309_j1eforth\fpga\src\Rxunit.vhd".
+    Related source file is "D:\GitHub_work\J1_eforth_AX309\fpga\src\Rxunit.vhd".
     Found 1-bit register for signal <RRegL>.
     Found 4-bit register for signal <RxProc.BitPos>.
     Found 2-bit register for signal <RxProc.SampleCnt>.
@@ -784,12 +784,12 @@ clk_in         |    3.136|         |         |         |
 =========================================================================
 
 
-Total REAL time to Xst completion: 15.00 secs
-Total CPU time to Xst completion: 14.90 secs
+Total REAL time to Xst completion: 21.00 secs
+Total CPU time to Xst completion: 20.46 secs
  
 --> 
 
-Total memory usage is 4544364 kilobytes
+Total memory usage is 4558848 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   11 (   0 filtered)

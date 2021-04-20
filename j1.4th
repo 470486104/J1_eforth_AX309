@@ -7,9 +7,9 @@
 
 only forth definitions hex
 
-wordlist constant meta.1
-wordlist constant target.1
-wordlist constant assembler.1
+wordlist constant meta.1 \ 转移编译词汇 
+wordlist constant target.1 \ 目标词汇(自定义forth系统的词汇)
+wordlist constant assembler.1	\ 汇编词汇 组成目标词汇
 
 : (order) ( w wid*n n -- wid*n w n ) 
 \ w表示一个词表  wid*n表示wid1、wid2···widn  n表示n个词表 ；该词的功能为从当前搜索词表中找出该词并丢弃wid*[n-1] w n，若无该词不进行任何操作wid*n w n
@@ -38,9 +38,9 @@ create tflash 1000 cells here over erase allot \ 创建一个数组tflash，1000
 
 variable tdp 	
 
-: there tdp @ ;
-: tc! tflash + c! ;
-: tc@ tflash + c@ ;
+: there tdp @ ;  \ 变量tdp的值
+: tc! ( n -- ) tflash + c! ; \ 存到数组tflash的n位置  字节存单位
+: tc@ ( n -- ) tflash + c@ ; \ 取数组tflash的n位置的值 字节存单位
 : t! over ff and over tc! swap 8 rshift swap 1+ tc! ;
 : t@ dup tc@ swap 1+ tc@ 8 lshift or ;
 : talign there 1 and tdp +! ;

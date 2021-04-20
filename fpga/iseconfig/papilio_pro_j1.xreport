@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2021-04-07T15:03:55</DateModified>
+  <DateModified>2021-04-15T09:55:54</DateModified>
   <ModuleName>papilio_pro_j1</ModuleName>
-  <SummaryTimeStamp>2020-10-12T13:07:15</SummaryTimeStamp>
-  <SavedFilePath>D:/Users/Worship/Desktop/study_material/ForthCPU_Code/AX309_j1eforth/fpga/iseconfig/papilio_pro_j1.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>D:/Users/Worship/Desktop/study_material/ForthCPU_Code/AX309_j1eforth/fpga\</ImplementationReportsDirectory>
+  <SummaryTimeStamp>2021-04-13T18:28:32</SummaryTimeStamp>
+  <SavedFilePath>D:/GitHub_work/J1_eforth_AX309/fpga/iseconfig/papilio_pro_j1.xreport</SavedFilePath>
+  <ImplementationReportsDirectory>D:/GitHub_work/J1_eforth_AX309/fpga\</ImplementationReportsDirectory>
   <DateInitialized>2020-06-29T10:19:34</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>

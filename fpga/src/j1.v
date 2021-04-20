@@ -36,44 +36,47 @@ module j1(
    output io_wr, 
    output [15:0] io_addr, 
    output [15:0] io_dout);
-
+	
   reg [15:0] insn;								//指令
   wire [15:0] immediate = { 1'b0, insn[14:0] };	
 
-  reg [4:0] dsp;  // Data stack pointer
-  reg [4:0] _dsp;
-  reg [15:0] st0; // Return stack pointer
-  reg [15:0] _st0;
-  wire _dstkW;     // D stack write
+  reg [4:0] dsp;  // 次栈顶指针
+  reg [4:0] _dsp;	// 栈顶指针
+  reg [15:0] st0; // 栈顶元素    T 
+  reg [15:0] _st0;   // 栈顶数据暂存 alu的结果 最终赋值到 st0
+  wire _dstkW;     // 数据堆栈写使能
 
   reg [12:0] pc;
   reg [12:0] _pc;
-  reg [4:0] rsp;
+  reg [4:0] rsp; // 返回堆栈 栈顶指针
   reg [4:0] _rsp;
-  reg _rstkW;     // R stack write
-  reg [15:0] _rstkD;
-  wire _ramWE;     // RAM write enable
+  reg _rstkW;     // 返回堆栈写使能
+  reg [15:0] _rstkD; //写入到返回栈数据      // RAM write enable
 
   wire [15:0] pc_plus_1;
   assign pc_plus_1 = pc + 1;
 
+/*******************************堆栈栈顶数据更新*******************************/
   // The D and R stacks
   reg [15:0] dstack[0:31];
   reg [15:0] rstack[0:31];
-  always @(posedge sys_clk_i)		//在系统时钟上升沿 如果 使能端 = 1 把数据写入到堆栈
+  always @(posedge sys_clk_i)		//在系统时钟上升沿 如果 使能= 1 把数据写入到堆栈
   begin
     if (_dstkW)
       dstack[_dsp] = st0;
     if (_rstkW)
       rstack[_rsp] = _rstkD;
   end
-  wire [15:0] st1 = dstack[dsp];	// 数据堆栈 栈顶元素
+  wire [15:0] st1 = dstack[dsp];	// 次栈顶  N
   wire [15:0] rst0 = rstack[rsp];	// 返回堆栈 栈顶元素
+/*******************************堆栈栈顶数据更新 end*******************************/
 
+
+/******************************译码阶段 decode*********************************/
   // st0sel is the ALU operation.  For branch and call the operation
   // is T, for 0branch it is N.  For ALU ops it is loaded from the instruction
   // field.
-  reg [3:0] st0sel;
+  reg [3:0] st0sel;  //指令类型 
   always @*
   begin
     case (insn[14:13])
@@ -84,22 +87,24 @@ module j1(
       default: st0sel = 4'bxxxx;
     endcase
   end
-
+/******************************译码结束 decode end*********************************/
 
   // Papilio Pro: main memory to be infered instead of specified explitely.
   reg [15:0] ram[0:16383]; 
   initial $readmemh("../j1.hex", ram);
 
+  // RAM数据存储和读取
   reg [15:0] mem_din;
   always @(posedge sys_clk_i) begin
     // $monitor("insn_addr= %h, insn = %h, sp=%h, rp=%h, S=%h %h", pc, insn, dsp, rsp, st1, st0);
-    insn <= ram[_pc];
-    mem_din <= ram[_st0[15:1]];
+    insn <= ram[_pc];  // ram读出的指令
+    mem_din <= ram[_st0[15:1]]; // ram读出的数据   _st0为数据的ram地址  st1为数据
     if (_ramWE & (_st0[15:14] ==0))
       ram[_st0[15:1]] <= st1[15:0];
   end
 
 
+/******************************执行阶段 *********************************/
   // Compute the new value of T.
   always @*
   begin
@@ -130,16 +135,16 @@ module j1(
   wire is_alu = (insn[15:13] == 3'b011);
   wire is_lit = (insn[15]);
 
-  assign io_rd = (is_alu & (insn[11:8] == 4'hc));
-  assign io_wr = _ramWE;
-  assign io_addr = st0;
-  assign io_dout = st1;
+  assign io_rd = (is_alu & (insn[11:8] == 4'hc)); // @   [T]  io读使能
+  assign io_wr = _ramWE; // io写使能
+  assign io_addr = st0;  // io地址
+  assign io_dout = st1;  // io输出数据
 
   assign _ramWE = is_alu & insn[5];
   assign _dstkW = is_lit | (is_alu & insn[7]);
 
-  wire [1:0] dd = insn[1:0];  // D stack delta
-  wire [1:0] rd = insn[3:2];  // R stack delta
+  wire [1:0] dd = insn[1:0];  // D stack delta  栈顶指针移动
+  wire [1:0] rd = insn[3:2];  // R stack delta	栈顶指针移动
 
   always @*
   begin
@@ -148,7 +153,7 @@ module j1(
       _rsp = rsp;
       _rstkW = 0;
       _rstkD = _pc;
-    end else if (is_alu) begin				// +
+    end else if (is_alu) begin				
       _dsp = dsp + {dd[1], dd[1], dd[1], dd};
       _rsp = rsp + {rd[1], rd[1], rd[1], rd};
       _rstkW = insn[6];

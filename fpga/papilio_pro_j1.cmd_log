@@ -41,3 +41,5 @@ map -intstyle ise -p xc6slx9-ftg256-2 -w -logic_opt off -ol high -t 1 -xt 0 -reg
 par -w -intstyle ise -ol high -mt off papilio_pro_j1_map.ncd papilio_pro_j1.ncd papilio_pro_j1.pcf 
 trce -intstyle ise -v 3 -s 2 -n 3 -fastpaths -xml papilio_pro_j1.twx papilio_pro_j1.ncd -o papilio_pro_j1.twr papilio_pro_j1.pcf -ucf ax309.ucf 
 bitgen -intstyle ise -f papilio_pro_j1.ut papilio_pro_j1.ncd 
+xst -intstyle ise -ifn "D:/GitHub_work/J1_eforth_AX309/fpga/papilio_pro_j1.xst" -ofn "D:/GitHub_work/J1_eforth_AX309/fpga/papilio_pro_j1.syr" 
+xst -intstyle ise -ifn "D:/GitHub_work/J1_eforth_AX309/fpga/papilio_pro_j1.xst" -ofn "D:/GitHub_work/J1_eforth_AX309/fpga/papilio_pro_j1.syr" 
