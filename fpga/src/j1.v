@@ -154,13 +154,13 @@ module j1(
       _rstkW = 0;
       _rstkD = _pc;
     end else if (is_alu) begin				
-      _dsp = dsp + {dd[1], dd[1], dd[1], dd};
+      _dsp = dsp + {dd[1], dd[1], dd[1], dd}; // dd是补码 若为负 dd[1]=1 若为正dd[1]=0 
       _rsp = rsp + {rd[1], rd[1], rd[1], rd};
       _rstkW = insn[6];
       _rstkD = st0;
     end else begin                          // jump/call
       // predicated jump is like DROP
-      if (insn[15:13] == 3'b001) begin
+      if (insn[15:13] == 3'b001) begin		// ?branch
         _dsp = dsp - 1;
       end else begin
         _dsp = dsp;

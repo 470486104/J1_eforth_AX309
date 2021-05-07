@@ -23,7 +23,7 @@ wordlist constant assembler.1	\ 汇编词汇 组成目标词汇
 
 get-current meta.1 set-current
 
-: [a] ( "name" -- ) \如果该词在汇编列表中，则把该词的执行地址（代码指针域地址）编译到使用本词的定义中（即本定义词的参数域中）
+: [a] ( "name" -- ) \ 如果后面跟随的词在汇编(assembler.1)列表中，则把该词的执行地址（代码指针域地址）编译到使用本词的定义中（即本定义词的参数域中）
   parse-word assembler.1 search-wordlist 0=
    abort" [a]?" compile, ; immediate
 : a: ( "name" -- ) \把一个词汇加入到汇编词列表中
@@ -36,21 +36,21 @@ a: asm[ ( -- ) assembler.1 -order ; immediate \ asm[ 功能：把汇编词表从
 
 create tflash 1000 cells here over erase allot \ 创建一个数组tflash，1000个单元大小，并且清空单元内的所有废数据，将here指针向后推进1000个单元
 
-variable tdp 	
+variable tdp 	\ tflash的指针
 
-: there tdp @ ;  \ 变量tdp的值
-: tc! ( n -- ) tflash + c! ; \ 存到数组tflash的n位置  字节存单位
-: tc@ ( n -- ) tflash + c@ ; \ 取数组tflash的n位置的值 字节存单位
-: t! over ff and over tc! swap 8 rshift swap 1+ tc! ;
-: t@ dup tc@ swap 1+ tc@ 8 lshift or ;
-: talign there 1 and tdp +! ;
-: tc, there tc! 1 tdp +! ;
-: t, there t! 2 tdp +! ;
-: $literal [char] " word count dup tc, 0 ?do
-	count tc, loop drop talign ;
-: tallot tdp +! ;
-: org tdp ! ;
-
+: there ( -- n ) tdp @ ;  \ 变量tdp的值
+: tc! ( n addr -- ) tflash + c! ; \ 把n的低8位存到数组tflash的addr位置  字节 为单位
+: tc@ ( addr -- ) tflash + c@ ; \ 取数组tflash的addr位置的值 字节 为单位
+: t! ( n addr -- ) over ff and over tc! swap 8 rshift swap 1+ tc! ; \ 把n存到数组tflash的addr位置  字 为单位
+: t@ ( tdp -- ) dup tc@ swap 1+ tc@ 8 lshift or ; \ 取数组tflash的addr位置的值 字 为单位
+: talign ( -- ) there 1 and tdp +! ; \ 若变量tdp中存的是地址 则判断地址是否是按字对齐的（最低位为0是对齐） 若不对齐则对齐（地址+1）
+: tc, ( n -- ) there tc! 1 tdp +! ; \ 把变量中的值低8位存到tflash数组的tdp位置后tdp指针自增1
+: t, ( n -- ) there t! 2 tdp +! ; \ 把变量中的值存到tflash数组的tdp位置后tdp指针自增2
+: $literal [char] " word count dup tc, 0 ?do 
+	count tc, loop drop talign ; \ 读取一个词存入到tflash中  tflash的内容为【5，‘a’,'b','x','s','e',·····】
+: tallot tdp +! ; \ 加减法更改指针位置 
+: org tdp ! ; \ 更改指针位置
+\ [char] " 如果我想的不错的话是把“ " ”的ascii码放到栈顶，然后word从输入中获取一个词以“ " ”结尾，返回带有词长度的地址，count把这个带有词长度的地址转换成词的第一个字符的地址和词长度，此时堆栈应为 addr len，dup和tc,后,堆栈为addr len。tflash为【len[8:0],······】其中len[8:0]为len的低8位。进入循环后 执行count和tc，后堆栈为addr+1。tflash为【len[8:0], len[8:0]-1,······】。难道tflash就存长度不存字符
 a: t    0000 ;
 a: n    0100 ;
 a: t+n  0200 ;
@@ -79,12 +79,12 @@ a: r+1  0004 or ;
 
 a: alu  6000 or t, ;
 
-a: return [a] t 1000 or [a] r-1 [a] alu ;
-a: branch 2/ 0000 or t, ;
-a: ?branch 2/ 2000 or t, ;
+a: return [a] t 1000 or [a] r-1 [a] alu ; \ （ -- ）将指令700c送至tflash[tdp] 指令700c：逻辑运算 返回栈顶地址送至pc 返回堆栈指针-1 ，其中1000为返回栈顶地址送至pc
+a: branch 2/ 0000 or t, ; \ （ n -- ） jump
+a: ?branch 2/ 2000 or t, ; \ 条件跳转
 a: call 2/ 4000 or t, ;
 
-a: literal
+a: literal \ ( n -- ) 若n>8000h 则在tflash[tdp]处存放值8000h的取反值（即取非值）和6600h（非 运算指令）；若 n!=8000h 则在tflash[tdp]处存放值8000h|n（按位或运算） 的值即转换为文字
    dup 8000 and if
     ffff xor recurse
      [a] ~t [a] alu
@@ -92,19 +92,19 @@ a: literal
     8000 or t,
    then ;
 
-variable tlast
+variable tlast \ tflash中最后一个词的指针
 variable tuser
 
 0001 constant =ver
 0004 constant =ext
-0040 constant =comp
-0080 constant =imed
+0040 constant =comp \ 与某词长度or运算可使该词为只编译词不搜索，即词长度的次高位置为1
+0080 constant =imed \ 与某词长度or运算可使该词为立即词，即词长度的最高位置为1
 7f1f constant =mask
 0002 constant =cell
 0010 constant =base
 0008 constant =bksp
-000a constant =lf
-000d constant =cr
+000a constant =lf	\ 换行符的ascii码
+000d constant =cr	\ 回车符的ascii码
 
 4000 constant =em
 0000 constant =cold
@@ -112,75 +112,79 @@ variable tuser
  8 constant =vocs
 80 constant =us
 
-=em 100 - constant =tib
-=tib =us - constant =up
-=cold =us + constant =pick
-=pick 100 + constant =code
+=em 100 - constant =tib \ 3f00
+=tib =us - constant =up \ 3e80
 
-: thead
+=cold =us + constant =pick \ 0080
+=pick 100 + constant =code \ 0180
+
+: thead ( "name" -- ) \ 以空格为结尾 存放字符串 一般为词头名称 第一个单元存放长度,,
   talign
    tlast @ t, there tlast !
-	parse-word dup tc, 0 ?do count tc, loop drop talign ;
-: twords
+	parse-word dup tc, 0 ?do count tc, loop drop talign ; 
+: twords ( -- )  \ 打印tflash中的词 每个词的之间有空格  若一个词的长度为0 则停止打印   ｛len1， “5555”， len2， “12312”， len3， “12jlkj”， ······｝
    cr tlast @
    begin
       dup tflash + count 1f and type space =cell - t@
    ?dup 0= until ;
-: [t]
+: [t] ( "name" -- ) \ 如果后面跟随的词在目标(target.1)列表中，则把该词的参数域的内容放在堆栈上
   parse-word target.1 search-wordlist 0=
     abort" [t]?" >body @ ; immediate
-: [last] tlast @ ; immediate
-: ( [char] ) parse 2drop ; immediate
+: [last] ( -- ) tlast @ ; immediate \ 最后一个词的指针
+: ( [char] ) parse 2drop ; immediate \ 括号定义 忽略括号内部的内容
 : literal [a] literal ;
-: lookback there =cell - t@ ;
-: call? lookback e000 and 4000 = ;
-: call>goto there =cell - dup t@ 1fff and swap t! ;
-: safe? lookback e000 and 6000 = lookback 004c and 0= and ;
-: alu>return there =cell - dup t@ 1000 or [a] r-1 swap t! ;
-: t:
+: lookback ( -- n ) there =cell - t@ ; \ 取前一个单元的值
+: call? ( -- 1or0 ) lookback e000 and 4000 = ; \ 如果前一单元的指令为跳转指令则栈顶为1 反之为0
+: call>goto ( -- ) there =cell - dup t@ 1fff and swap t! ; \ 将tdp-2处的跳转指令中的地址取出并重新存入当前指令的位置
+: safe? ( -- 1or0 ) lookback e000 and 6000 = lookback 004c and 0= and ; \ 判断tflash[tdp-2]中的指令是否是alu并且参数栈顶数据不穿传到返回栈顶，是返回1，反之0  指令004c 参数栈顶数据传到返回栈顶
+: alu>return there =cell - dup t@ 1000 or [a] r-1 swap t! ;	\ 在指令中添加返回位即R->PC,以及返回堆栈指针-1指令
+: t: \ 创建跟在t：之后的词，并将tdp指针存到创建词的参数域，运行该词的时候会跳转到参数域的tdp指针处。创建t；之前的词不会编译到词参数域中，而是存储到tflash的tdp处。
   >in @ thead >in !
     get-current >r target.1 set-current create
-	 r> set-current 947947 talign there , does> @ [a] call ;
-: exit
-  call? if
-   call>goto else safe? if
-    alu>return else
-	 [a] return
-   then
-  then ;
-: t;
+	 r> set-current 947947 talign there , does> @ [a] call ; \ t: noop noop t;
+: exit \ 若是跳转指令call 则将地址取出并重新存入当前指令的位置，否则判断是否是alu并且参数栈顶不传数据到返回栈顶，是则在该指令中添加返回位即R->PC否则直接写返回指令到tdp-2位置
+  	call? if
+	
+  		call>goto
+  	else safe? if
+			alu>return 
+		else
+	 		[a] return
+   		then
+  	then ;
+: t; \ t：的结束词，它会使该定义词返回到原来调用的下一条语句
   947947 <> if
    abort" unstructured" then true if
 	exit else [a] return then ;
-: u:
+: u: \ 创建用户变量 参数域存为tflash的地址 ，并将地址转换为文字指令 且加上退出指令
   >in @ thead >in !
    get-current >r target.1 set-current create
     r> set-current talign tuser @ dup ,
 	 [a] literal exit =cell tuser +! does> @ [a] literal ;
-: [u]
+: [u] \ 取后跟随的词的参数域的内容 减去地址=up再加2
   parse-word target.1 search-wordlist 0=
     abort" [t]?" >body @ =up - =cell + ; immediate
 : immediate tlast @ tflash + dup c@ =imed or swap c! ;
 : compile-only tlast @ tflash + dup c@ =comp or swap c! ;
 
       0 tlast !
-    =up tuser !
+    =up tuser !  \ 3e80
 
-: hex# ( u -- addr len )  0 <# base @ >r hex =lf hold # # # # r> base ! #> ;
-: save-hex ( <name> -- )
+: hex# ( u -- addr len )  0 <# base @ >r hex =lf hold # # # # r> base ! #> ; \ 将无符号单字长整数转换为4有效位的16进制整数字符串 
+: save-hex ( <name> -- ) 
   parse-word w/o create-file throw
   there 0 do i t@  over >r hex# r> write-file throw 2 +loop
-   close-file throw ;
-: save-target ( <name> -- )
+   close-file throw ; \ 将代码编译保存为16进制文件
+: save-target ( <name> -- ) \ 将代码编译保存为2进制文件
   parse-word w/o create-file throw >r
    tflash there r@ write-file throw r> close-file ;
 
-: begin  there ;
-: until  [a] ?branch ;
+: begin  there ; \ tdp指针的值
+: until  [a] ?branch ; \ 2/ 2000 or t,
 
 : if     there 0 [a] ?branch ;
 : skip   there 0 [a] branch ;
-: then   begin 2/ over t@ or swap t! ;
+: then   begin 2/ over t@ or swap t! ; \ tdp tdp1/2 tdp@ or 
 : else   skip swap then ;
 : while  if swap ;
 : repeat [a] branch then ;
