@@ -19,14 +19,14 @@ wordlist constant assembler.1	\ 汇编词汇 组成目标词汇
 : -order ( wid -- ) get-order (order) nip set-order ; \ 把词表从搜索词表的序列中删除 ，get-order返回结果widn~wid1 n（wid1为栈顶元素，n为词表wid个数）
 : +order ( wid -- ) dup >r -order get-order r> swap 1+ set-order ; \ 把词表添加搜索词表的序列中
 
-: ]asm ( -- ) assembler.1 +order ; immediate \把汇编词表加入到搜索队列中
+: ]asm ( -- ) assembler.1 +order ; immediate \ 把汇编词表加入到搜索队列中
 
 get-current meta.1 set-current
 
 : [a] ( "name" -- ) \ 如果后面跟随的词在汇编(assembler.1)列表中，则把该词的执行地址（代码指针域地址）编译到使用本词的定义中（即本定义词的参数域中）
   parse-word assembler.1 search-wordlist 0=
    abort" [a]?" compile, ; immediate
-: a: ( "name" -- ) \把一个词汇加入到汇编词列表中
+: a: ( "name" -- ) \ 把一个词汇加入到汇编词列表中
   get-current >r  assembler.1 set-current
   : r> set-current ;
 
@@ -36,7 +36,7 @@ a: asm[ ( -- ) assembler.1 -order ; immediate \ asm[ 功能：把汇编词表从
 
 create tflash 1000 cells here over erase allot \ 创建一个数组tflash，1000个单元大小，并且清空单元内的所有废数据，将here指针向后推进1000个单元
 
-variable tdp 	\ tflash的指针
+variable tdp 	\ tflash的指针 按字节移动
 
 : there ( -- n ) tdp @ ;  \ 变量tdp的值
 : tc! ( n addr -- ) tflash + c! ; \ 把n的低8位存到数组tflash的addr位置  字节 为单位
@@ -50,7 +50,7 @@ variable tdp 	\ tflash的指针
 	count tc, loop drop talign ; \ 读取一个词存入到tflash中  tflash的内容为【5，‘a’,'b','x','s','e',·····】
 : tallot tdp +! ; \ 加减法更改指针位置 
 : org tdp ! ; \ 更改指针位置
-\ [char] " 如果我想的不错的话是把“ " ”的ascii码放到栈顶，然后word从输入中获取一个词以“ " ”结尾，返回带有词长度的地址，count把这个带有词长度的地址转换成词的第一个字符的地址和词长度，此时堆栈应为 addr len，dup和tc,后,堆栈为addr len。tflash为【len[8:0],······】其中len[8:0]为len的低8位。进入循环后 执行count和tc，后堆栈为addr+1。tflash为【len[8:0], len[8:0]-1,······】。难道tflash就存长度不存字符
+\ [char] " 把“ " ”的ascii码放到栈顶，然后word从输入中获取一个词以“ " ”结尾，返回带有词长度的地址，count把这个带有词长度的地址转换成词的第一个字符的地址和词长度，此时堆栈应为 addr len，dup和tc,后,堆栈为addr len。tflash为【len[8:0],······】其中len[8:0]为len的低8位。进入循环后 执行count和tc，后堆栈为addr+1。tflash为【len[8:0], len[8:0]-1,······】。难道tflash就存长度不存字符
 a: t    0000 ;
 a: n    0100 ;
 a: t+n  0200 ;
@@ -77,9 +77,11 @@ a: r-1  000c or ;
 a: r-2  0008 or ;
 a: r+1  0004 or ;
 
+a: gotocore 6010 t, ;
+
 a: alu  6000 or t, ;
 
-a: return [a] t 1000 or [a] r-1 [a] alu ; \ （ -- ）将指令700c送至tflash[tdp] 指令700c：逻辑运算 返回栈顶地址送至pc 返回堆栈指针-1 ，其中1000为返回栈顶地址送至pc
+a: return [a] t 1000 or [a] r-1 [a] alu ; \ （ -- ）将指令700c送至tflash[tdp];  指令700c：逻辑运算 返回栈顶地址送至pc 返回堆栈指针-1 ，其中1000为r->pc
 a: branch 2/ 0000 or t, ; \ （ n -- ） jump
 a: ?branch 2/ 2000 or t, ; \ 条件跳转
 a: call 2/ 4000 or t, ;
@@ -112,8 +114,8 @@ variable tuser
  8 constant =vocs
 80 constant =us
 
-=em 100 - constant =tib \ 3f00
-=tib =us - constant =up \ 3e80
+=em 100 - constant =tib \ 3f00  
+=tib =us - constant =up \ 3e80  终端输入缓冲区地址
 
 =cold =us + constant =pick \ 0080
 =pick 100 + constant =code \ 0180
@@ -156,7 +158,7 @@ variable tuser
   947947 <> if
    abort" unstructured" then true if
 	exit else [a] return then ;
-: u: \ 创建用户变量 参数域存为tflash的地址 ，并将地址转换为文字指令 且加上退出指令
+: u: \ 创建用户变量 参数域存为tflash的地址，并且在tflash中存跟随在u:后的词名和当前用户变量的地址（文字指令）以及一个返回字段 
   >in @ thead >in !
    get-current >r target.1 set-current create
     r> set-current talign tuser @ dup ,
@@ -190,6 +192,8 @@ variable tuser
 : repeat [a] branch then ;
 : again  [a] branch ;
 : aft    drop skip begin swap ;
+
+: gotocore ]asm gotocore asm[ ;
 
 : noop ]asm t alu asm[ ;
 : + ]asm t+n d-1 alu asm[ ;
@@ -246,7 +250,7 @@ variable tuser
 a: down e for down1 next copy exit  ;
 a: up e for up1 next noop exit ;
 
-: for >r begin ;
+: for >r begin ; 
 : next r@ while r> 1- >r repeat r> drop ;
 
 =pick org
@@ -280,10 +284,10 @@ there constant =pickbody
 there constant =uzero
    =base t, ( base )
    0 t,     ( temp )
-   0 t,     ( >in )
-   0 t,     ( #tib )
-   =tib t,  ( tib )
-   0 t,     ( 'eval )
+   0 t,     ( >in )		( 指向当前被操作字符的指针，值为距起始输入缓冲区的位移 )
+   0 t,     ( #tib )	( 终端输入缓冲区可容纳的字符个数 )
+   =tib t,  ( tib )		( 终端输入缓冲区的起始地址 )
+   0 t,     ( 'eval )	( 存储文本解释程序的pc即tdp指针 )
    0 t,     ( 'abort )
    0 t,     ( hld )
 
@@ -302,7 +306,7 @@ there constant =uzero
    0 t,     ( wid, new definitions )
    0 t,     ( wid, head of chain )
 
-   0 t,     ( dp )
+   0 t,     ( dp )		( 词典指针，指向词典中下一个可用的主存单元 )
    0 t,     ( last )
    0 t,     ( '?key )
    0 t,     ( 'emit )
@@ -317,6 +321,23 @@ there constant =ulast
 =ulast =uzero - constant =udiff
 
 =code org
+
+\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\ \ 												target词汇构建过程                                                 \\
+\ \ 1.首先 t：把跟在其后的第一个target词名存在tflash[tdp]处，存储完成后tdp指针移动到最后一个字符之后的16bit对齐位置上. \\
+\ \ 2.紧接着t：会在target词表中创建一个词，词名仍是t：后的第一个词名，词头创建好后在词的词身（body）处保存当前tdp的值。\\
+\ \ 	**并且，给该词添加运行时间代码call，当调用该词的时候，系统会执行[call tdp]指令，将pc指向tflash[tdp]处。**      \\
+\ \ 3.到此t：执行完成。然后执行target词名之后的汇编词汇（a:开头定义的词汇），汇编词汇会在当前tflash[tdp]处写入对应的指 \\
+\ \ 	令，tdp指针向后推进。                                                                                          \\
+\ \ 4.最后执行t; 判断汇编词汇的最后一条指令是否是跳转指令，是则跳转，否则在当前tflash[tdp]处加入一条返回指令。         \\
+\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+\ target词汇结构
+\ target词表中：
+\			词名（开头一个字节存放词名字符个数）| ··· @ [a] call 或者 @ [a] literal | tdp指针的值
+\ tflash中：
+\			词名（开头一个字节存放词名字符个数）| 若干运行指令 + 返回指令			
+
 
 t: noop noop t;
 t: + + t;
@@ -631,7 +652,7 @@ t: $eval ( a u -- )
 t: preset ( -- ) =tib literal #tib cell+ ! t;
 t: quit ( -- )
    [ begin
-	 query eval
+	 query gotocore eval .ok
    again t;
 t: abort drop preset .ok quit t;
 t: ' ( -- ca ) token name? if exit then abort1 t;
