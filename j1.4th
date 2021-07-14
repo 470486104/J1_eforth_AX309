@@ -34,7 +34,7 @@ target.1 +order meta.1 +order
 
 a: asm[ ( -- ) assembler.1 -order ; immediate \ asm[ 功能：把汇编词表从搜索表中删除
 
-create tflash 1000 cells here over erase allot \ 创建一个数组tflash，1000个单元大小，并且清空单元内的所有废数据，将here指针向后推进1000个单元
+create tflash 2000 cells here over erase allot \ 创建一个数组tflash，1000个单元大小，并且清空单元内的所有废数据，将here指针向后推进1000个单元
 
 variable tdp 	\ tflash的指针 按字节移动
 
@@ -77,7 +77,7 @@ a: r-1  000c or ;
 a: r-2  0008 or ;
 a: r+1  0004 or ;
 
-a: gotocore 6010 t, ;
+\ a: gotocore 6010 t, ;
 
 a: alu  6000 or t, ;
 
@@ -193,7 +193,7 @@ variable tuser
 : again  [a] branch ;
 : aft    drop skip begin swap ;
 
-: gotocore ]asm gotocore asm[ ;
+\ : gotocore ]asm gotocore asm[ ;
 
 : noop ]asm t alu asm[ ;
 : + ]asm t+n d-1 alu asm[ ;
@@ -652,7 +652,7 @@ t: $eval ( a u -- )
 t: preset ( -- ) =tib literal #tib cell+ ! t;
 t: quit ( -- )
    [ begin
-	 query gotocore eval .ok
+	 query eval
    again t;
 t: abort drop preset .ok quit t;
 t: ' ( -- ca ) token name? if exit then abort1 t;
